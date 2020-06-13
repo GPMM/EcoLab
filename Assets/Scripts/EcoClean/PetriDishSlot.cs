@@ -160,18 +160,6 @@ namespace EcoClean
 
             pollutantMeshRenderer.material.color = color;
         }
-
-        public void PROTOSetColor(Color color, bool toHex)
-        {
-            if (toHex)
-            {
-                pollutantMeshRenderer.material.color = color;
-            }
-            else
-            {
-                microorganismMeshRenderer.material.color = color;
-            }
-        }
         #endregion
     }
 }

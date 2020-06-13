@@ -66,10 +66,10 @@ namespace EcoClean
         private static Dictionary<Tuple<string, string>, float> reactionTable = new Dictionary<Tuple<string, string>, float>()
         {
             { new Tuple<string, string>("Bacteria A", "Pollutant A"), 0.21f },
-            { new Tuple<string, string>("Bacteria B", "Pollutant A"), 0.12f },
-            { new Tuple<string, string>("Bacteria C", "Pollutant A"), -0.09f },
             { new Tuple<string, string>("Bacteria A", "Pollutant B"), -0.08f },
-            { new Tuple<string, string>("Bacteria B", "Pollutant B"), -0.1f },
+            { new Tuple<string, string>("Bacteria B", "Pollutant A"), 0.12f },
+            { new Tuple<string, string>("Bacteria B", "Pollutant B"), 0.15f },
+            { new Tuple<string, string>("Bacteria C", "Pollutant A"), -0.09f },
             { new Tuple<string, string>("Bacteria C", "Pollutant B"), 0.11f }
         };
 

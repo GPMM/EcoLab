@@ -244,10 +244,7 @@ namespace EcoClean
                 throw new ArgumentNullException("petriDishSlot");
             }
 
-            // TODO: Prototype microorganism-pollutant consumption method.
-            petriDishSlot.SetMicroorganism(
-                    petriDishSlot.Microorganism,
-                    petriDishSlot.MicroorganismAmount - petriDishSlot.Microorganism.PassiveEnergyLoss);
+            Decay(petriDishSlot);
 
             if (petriDishSlot.Microorganism != null && petriDishSlot.Pollutant != null)
             {
@@ -277,6 +274,14 @@ namespace EcoClean
                     petriDishSlot.Pollutant,
                     petriDishSlot.PollutantAmount - Mathf.Clamp(difference, 0, Mathf.Infinity));
             }
+        }
+
+        private void Decay (PetriDishSlot petriDishSlot)
+        {
+            // TODO: Prototype microorganism-pollutant consumption method.
+            petriDishSlot.SetMicroorganism(
+                       petriDishSlot.Microorganism,
+                       petriDishSlot.MicroorganismAmount - petriDishSlot.Microorganism.PassiveEnergyLoss);
         }
         #endregion Feeding phase methods
 
