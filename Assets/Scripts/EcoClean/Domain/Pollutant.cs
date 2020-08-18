@@ -2,19 +2,13 @@
 
 namespace EcoClean.Domain
 {
-    public class Pollutant
+    public class Pollutant : Element
     {
         #region Constructors
-        public Pollutant(string name, Color pollutantColor)
+        public Pollutant(string name, Color elementColor) : base(name, elementColor, ElementType.POLLUTANT)
         {
-            Name = name;
-            PollutantColor = pollutantColor;
-        }
-        #endregion
 
-        #region Properties
-        public string Name { get; }
-        public Color PollutantColor { get; }
+        }
         #endregion
 
         #region Operators

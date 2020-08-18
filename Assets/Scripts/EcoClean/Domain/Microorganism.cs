@@ -2,20 +2,16 @@
 
 namespace EcoClean.Domain
 {
-    public class Microorganism
+    public class Microorganism : Element
     {
         #region Constructors
-        public Microorganism(string name, Color microorganismColor, float passiveEnergyLoss)
+        public Microorganism(string name, Color elementColor, float passiveEnergyLoss) : base(name, elementColor, ElementType.MICROORGANISM)
         {
-            Name = name;
-            MicroorganismColor = microorganismColor;
             PassiveEnergyLoss = passiveEnergyLoss;
         }
         #endregion
 
         #region Properties
-        public string Name { get; }
-        public Color MicroorganismColor { get; }
         public float PassiveEnergyLoss { get; }
         #endregion
 
