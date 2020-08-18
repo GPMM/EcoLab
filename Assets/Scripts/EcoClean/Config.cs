@@ -1,13 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace EcoClean
+﻿namespace EcoClean
 {
-    public class Config
+    public static class Config
     {
-        #region Constructors
-        private Config() { }
-        #endregion
-
         #region Constants
         public const float MICROORGANISMS_TO_TRIGGER_DIVISION = 1.0f;
         public const float MICROORGANISM_CONSUMPTION_RANDOM_VARIATION = 0.15f;
@@ -18,14 +12,19 @@ namespace EcoClean
         public const float SECONDS_PER_TICK = 1f;
 
         // Different game speeds
+        public const int TIME_STEP_DEFAULT = 0;
         public readonly static float[] TIME_STEP_MULTIPLIERS = new float[]
         {
-            0.25f,
-            0.5f,
             1f,
             2f,
-            4f
+            4f,
+            8f
         };
+
+        // UI
+        public const float UI_GRAPH_NODE_DIAMETER = 8f;
+        public const float UI_GRAPH_EDGE_THICKNESS = 3f;
+        public const float UI_GRAPH_EDGE_ALPHA = 0.4f;
         #endregion
     }
 }

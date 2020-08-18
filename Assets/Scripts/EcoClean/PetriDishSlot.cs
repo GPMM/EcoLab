@@ -134,9 +134,9 @@ namespace EcoClean
                 float transparency = MicroorganismAmount / Config.SLOT_MAX_MICROORGANISMS;
 
                 color = new Color(
-                    microorganism.MicroorganismColor.r,
-                    microorganism.MicroorganismColor.g,
-                    microorganism.MicroorganismColor.b,
+                    microorganism.ElementColor.r,
+                    microorganism.ElementColor.g,
+                    microorganism.ElementColor.b,
                     transparency);
             }
 
@@ -152,25 +152,13 @@ namespace EcoClean
                 float transparency = PollutantAmount / Config.SLOT_MAX_REAGENTS;
 
                 color = new Color(
-                    pollutant.PollutantColor.r,
-                    pollutant.PollutantColor.g,
-                    pollutant.PollutantColor.b,
+                    pollutant.ElementColor.r,
+                    pollutant.ElementColor.g,
+                    pollutant.ElementColor.b,
                     transparency);
             }
 
             pollutantMeshRenderer.material.color = color;
-        }
-
-        public void PROTOSetColor(Color color, bool toHex)
-        {
-            if (toHex)
-            {
-                pollutantMeshRenderer.material.color = color;
-            }
-            else
-            {
-                microorganismMeshRenderer.material.color = color;
-            }
         }
         #endregion
     }

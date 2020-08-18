@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace CubicHex
 {
-    public class Pathfinder
+    public static class Pathfinder
     {
-        #region Constructors
-        private Pathfinder () { }
-        #endregion
-
         #region Methods
         public static List<Hex> FindHexPathByBreadth(Hex origin, Func<Hex, bool> hexIsGoal)
         {
@@ -31,6 +27,8 @@ namespace CubicHex
                     // TODO: This is going to make it run out of memory. Neighbour returns a virtual representation of Hex, with
                     // will never be null. As such, this will run until if finds a suitable Hex. If there is no Hex meeting the
                     // Goal condition, it will only stop when the game crashes out of memory.
+                    
+                    // TODO: Use a delegate to run HexMap.GetHexesWithin() function to find only available hexes in this map
                     Hex neighbour = Hex.Neighbour(hex, i);
 
                     if (neighbour == null)

@@ -8,6 +8,33 @@ public class ErrorHandler
     #endregion
 
     #region Methods
+    public static void AssertNull(object obj, string message)
+    {
+        if (obj is null)
+        {
+            if (!string.IsNullOrWhiteSpace(message))
+            {
+                throw new Exception(message);
+            }
+            else
+            {
+                throw new ArgumentNullException(obj.GetType().Name);
+            }
+        }
+    }
+
+    public static void AssertNullQuit(object obj, string message = null)
+    {
+        try
+        {
+            AssertNull(obj, message);
+        }
+        catch
+        {
+            Application.Quit();
+        }
+    }
+
     public static void LogError (string message)
     {
         LogError(message, null);
@@ -16,7 +43,15 @@ public class ErrorHandler
     // TODO: Finish implementation
     public static void LogError(string message, Exception exception)
     {
-        Debug.LogError(message);
+        if (!string.IsNullOrWhiteSpace(message))
+        {
+            Debug.LogError(message);
+        }
+
+        if (!(exception is null))
+        {
+            Debug.LogError(exception);
+        }
 
         Application.Quit();
 

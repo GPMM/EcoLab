@@ -8,7 +8,8 @@ namespace CubicHex
     public class HexMap : MonoBehaviour
     {
         #region Local variables
-        private static Hex[,] hexes;
+        private Hex[,] hexes;
+        private GameObject petriDish;
         #endregion
 
         #region Serialized variables
@@ -20,7 +21,7 @@ namespace CubicHex
         /// <summary>
         /// Prefab for the background object
         /// </summary>
-        public GameObject PetriDish;
+        public GameObject PetriDishPrefab;
 
         /// <summary>
         /// Total map radius
@@ -52,6 +53,12 @@ namespace CubicHex
         {
             get;
         } = new List<Hex>();
+
+        public int CachedHexCount
+        {
+            get;
+            protected set;
+        } = 0;
         #endregion
 
         #region Methods
@@ -65,8 +72,19 @@ namespace CubicHex
         /// 
         /// TODO: Make this method abstract and allow other classes that implement HexMap to change this behavior.
         /// </summary>
-        private void Generate()
+        public void Generate()
         {
+            // If it is not the first time this method is called, this will clear
+            // the arrays storing data that is soon to be deleted/destroyed
+            hexes = null;
+            AllHexes.Clear();
+
+            // Remove any possible previously generated hexes
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+
             int diameter = Radius * 2 + 1;
 
             // Instancing the hexes array in its proper size
@@ -74,8 +92,6 @@ namespace CubicHex
 
             for (int row = 0; row < diameter; row++)
             {
-                // Petri dish declaration
-                GameObject pd = null;
 
                 // Making the map hexagon-shaped
                 int minColumn = Mathf.Clamp(Radius - row, 0, Radius);
@@ -100,32 +116,26 @@ namespace CubicHex
                     go.transform.position = hex.WorldPosition;
 
                     // Instantiate the petri dish model
-                    if (row == column && row == Radius)
+                    if (petriDish is null && row == column && row == Radius)
                     {
-                        pd = Instantiate(
-                           PetriDish,
+                        petriDish = Instantiate(
+                           PetriDishPrefab,
                            hex.WorldPosition,
                            Quaternion.identity);
 
-                        pd.transform.localScale = new Vector3(
+                        petriDish.transform.localScale = new Vector3(
                             diameter,
                             diameter,
                             diameter);
                     }
                 }
-
-                if (!(pd is null))
-                {
-                    Camera main = Camera.main;
-
-                    main.transform.position = new Vector3(
-                        pd.transform.position.x,
-                        Radius * 1.3f,
-                        pd.transform.position.z + Radius * 1.3f);
-
-                    main.transform.LookAt(pd.transform);
-                }
             }
+
+            // Updates the total hex count
+            CachedHexCount = AllHexes.Count;
+
+            // Centers camera around this petri dish
+            SetCameraPosition(petriDish);
         }
 
         /// <summary>
@@ -185,6 +195,25 @@ namespace CubicHex
             }
 
             return results;
+        }
+
+        public void SetCameraPosition(GameObject center)
+        {
+            if (!(center is null))
+            {
+                Camera main = Camera.main;
+
+                main.transform.position = new Vector3(
+                    center.transform.position.x,
+                    center.transform.position.y + Radius * 1.4f,
+                    center.transform.position.z + Radius * 1.4f);
+
+                Vector3 target = center.transform.position;
+
+                target.y -= Radius * 0.5f;
+
+                main.transform.LookAt(target);
+            }
         }
         #endregion
     }

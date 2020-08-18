@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Linq;
 
-public class Utils
+public static class Utils
 {
-    #region Constructors
-    private Utils() { }
-    #endregion
-
     #region Methods
     /// <summary>
     /// Sorts the received array in a random order
