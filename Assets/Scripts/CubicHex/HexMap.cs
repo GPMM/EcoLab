@@ -1,4 +1,5 @@
 ﻿using EcoClean;
+using EcoClean.Domain;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

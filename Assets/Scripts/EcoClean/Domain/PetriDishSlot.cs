@@ -2,7 +2,7 @@
 using EcoClean.Domain;
 using UnityEngine;
 
-namespace EcoClean
+namespace EcoClean.Domain
 {
     public class PetriDishSlot : Hex
     {

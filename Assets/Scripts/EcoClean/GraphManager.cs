@@ -13,20 +13,34 @@ namespace EcoClean
         public static GraphManager Instance { get; private set; }
         #endregion Properties
 
-        #region Local variables]
-        [SerializeField]
-        private Sprite nodeSprite;
-        [SerializeField]
-        private float margin;
-        [SerializeField]
-        private float graphHorizontalSeparation = 50f;
-
-        private RectTransform nodeContainer;
+        #region Local variables
         private float graphHeight;
         private float nodeContainerStartingWidth;
 
-        private Dictionary<Element, GameObject> lastCircleDict = new Dictionary<Element, GameObject>();
+        private readonly Dictionary<Element, GameObject> lastNodeDict = new Dictionary<Element, GameObject>();
+        private readonly List<int> dayLabelsInGraph = new List<int>();
         #endregion Local variables
+
+        #region Serialized variables
+        [SerializeField]
+        private Sprite nodeSprite;
+        [SerializeField]
+        private float horizontalMargin;
+        [SerializeField]
+        private float verticalMargin;
+        [SerializeField]
+        private float graphHorizontalSpacing = 50f;
+        [SerializeField]
+        private RectTransform verticalLabelContainer;
+        [SerializeField]
+        private RectTransform horizontalLabelContainer;
+        [SerializeField]
+        private RectTransform nodeContainer;
+        [SerializeField]
+        private RectTransform labelPrefab;
+        [SerializeField]
+        private RectTransform linePrefab;
+        #endregion Serialized variables
 
         #region Methods
         private void Awake()
@@ -36,43 +50,43 @@ namespace EcoClean
             
             ErrorHandler.AssertNullQuit(nodeSprite);
 
-            nodeContainer = transform.GetComponent<RectTransform>();
+            ErrorHandler.AssertNullQuit(verticalLabelContainer);
+            ErrorHandler.AssertNullQuit(horizontalLabelContainer);
+
+            ErrorHandler.AssertNullQuit(nodeContainer);
+            SetupNodeContainer();
+
+            ErrorHandler.AssertNullQuit(labelPrefab);
+            ErrorHandler.AssertNullQuit(linePrefab);
+        }
+
+        private void SetupNodeContainer()
+        {
             graphHeight = nodeContainer.sizeDelta.y;
             nodeContainerStartingWidth = nodeContainer.sizeDelta.x;
-            ErrorHandler.AssertNullQuit(nodeContainer);
         }
 
-        private GameObject CreateCircle(Vector2 position)
-        {
-            return CreateCircle("Element", position, Color.white);
-        }
-
-        private GameObject CreateCircle(string name, Vector2 anchoredPosition, Color color)
+        private GameObject CreateNode(string name, Vector2 anchoredPosition, Color color)
         {
             float diameter = Config.UI_GRAPH_NODE_DIAMETER;
 
             // Creating the edge with an Image component
-            GameObject circle = new GameObject("Node_" + name, typeof(Image));
-            circle.transform.SetParent(nodeContainer, false);
+            GameObject node = new GameObject("Node_" + name, typeof(Image));
+            node.transform.SetParent(nodeContainer, false);
 
             // Setting the edge's color
-            Image image = circle.GetComponent<Image>();
+            Image image = node.GetComponent<Image>();
             image.sprite = nodeSprite;
             image.color = color;
 
             // Setting position and rotation
-            RectTransform rectTransform = circle.GetComponent<RectTransform>();
+            RectTransform rectTransform = node.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = anchoredPosition;
             rectTransform.sizeDelta = new Vector2(diameter, diameter);
             rectTransform.anchorMin = new Vector2(0, 0);
             rectTransform.anchorMax = new Vector2(0, 0);
 
-            return circle;
-        }
-
-        private GameObject CreateEdge(Vector2 pointA, Vector2 pointB)
-        {
-            return CreateEdge("Element", pointA, pointB, Color.white);
+            return node;
         }
         
         private GameObject CreateEdge(string name, Vector2 pointA, Vector2 pointB, Color color)
@@ -103,34 +117,51 @@ namespace EcoClean
 
         public void RenderGraph(Element element, float value, int day, float maxValue)
         {
-            day /= GameManager.Instance.graphUpdateIntervalDays;
+            // Find the X index of this node based on the current day simulated.
+            // In the case of UpdateIntervals other than 1, this ensures all nodes are placed
+            // at exactly the value of graphHorizontalSeparation apart from each other horizontally.
+            int nodeIndex = day / GameManager.Instance.graphUpdateIntervalDays;
 
-            lastCircleDict.TryGetValue(element, out GameObject lastCircle);
+            // Find the last node of this element type, if there is any.
+            lastNodeDict.TryGetValue(element, out GameObject lastNode);
 
+            // Calculating the new node's position in the graph.
             Vector2 position = new Vector2(
-                day * graphHorizontalSeparation + margin,
-                (value / maxValue) * graphHeight);
+                nodeIndex * graphHorizontalSpacing + horizontalMargin,
+                (value / maxValue * (graphHeight - (verticalMargin * 2))) + verticalMargin);
 
-            GameObject circle = CreateCircle(element.Name, position, element.ElementColor);
+            // Instantiating the new node.
+            GameObject node = CreateNode(element.Name, position, element.ElementColor);
 
-            if (!(lastCircle is null))
+            // If there was already a node with this element, create an edge between it and the newly created node.
+            if (!(lastNode is null))
             {
                 CreateEdge(
                     element.Name,
-                    lastCircle.GetComponent<RectTransform>().anchoredPosition,
-                    circle.GetComponent<RectTransform>().anchoredPosition,
+                    lastNode.GetComponent<RectTransform>().anchoredPosition,
+                    node.GetComponent<RectTransform>().anchoredPosition,
                     element.ElementColor
                     );
             }
 
-            UpdateGraphWidth(day);
+            // If there is no day label regarding this day, instantiate a new one.
+            if (!dayLabelsInGraph.Contains(day))
+            {
 
-            lastCircleDict[element] = circle;
+            }
+
+            // Refresh the container's width to allow for all new nodes to be shown.
+            UpdateGraphWidth(nodeIndex);
+
+            // Update the last created node for the purpose of creating edges.
+            lastNodeDict[element] = node;
         }
 
+        // Resets all necessary properties to enable reuse of the graph.
         public void ResetGraph()
         {
-            lastCircleDict.Clear();
+            lastNodeDict.Clear();
+            dayLabelsInGraph.Clear();
 
             foreach (Transform child in nodeContainer.transform)
             {
@@ -142,7 +173,7 @@ namespace EcoClean
         {
             nodeContainer.sizeDelta = new Vector2(
                     Mathf.Max(
-                        (margin * 2) + (graphHorizontalSeparation * (day)),
+                        (horizontalMargin * 2) + (graphHorizontalSpacing * (day)),
                         nodeContainerStartingWidth),
                     nodeContainer.sizeDelta.y);
         }
