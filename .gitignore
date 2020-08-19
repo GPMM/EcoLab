@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+[Ll]ibrary/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -338,3 +340,10 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Temp
+/Assets/Plugins/GitHub/Editor
+/Library/gfu/cache
+/Library/il2cpp_cache
+/Library/PackageCache/com.unity.ide.rider@1.1.4
+/Library/PlayerDataCache/WebGL
+/Library/webgl_cache

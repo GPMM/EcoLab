@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EcoClean.Domain
+namespace EcoClean
 {
     public class GameManager : MonoBehaviour
     {

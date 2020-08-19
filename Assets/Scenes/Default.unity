@@ -859,8 +859,11 @@ MonoBehaviour:
   horizontalMargin: 15
   verticalMargin: 0
   graphHorizontalSpacing: 50
-  labelContainer: {fileID: 0}
+  verticalLabelContainer: {fileID: 0}
+  horizontalLabelContainer: {fileID: 0}
   nodeContainer: {fileID: 0}
+  labelPrefab: {fileID: 0}
+  linePrefab: {fileID: 0}
 --- !u!222 &721685042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1308,8 +1311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 305, y: 345}
-  m_SizeDelta: {x: 486, y: 410}
+  m_AnchoredPosition: {x: 305, y: 325}
+  m_SizeDelta: {x: 486, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1090145800
 CanvasRenderer:
@@ -1335,8 +1338,11 @@ MonoBehaviour:
   horizontalMargin: 15
   verticalMargin: 0
   graphHorizontalSpacing: 50
-  labelContainer: {fileID: 1090145799}
+  verticalLabelContainer: {fileID: 0}
+  horizontalLabelContainer: {fileID: 0}
   nodeContainer: {fileID: 721685039}
+  labelPrefab: {fileID: 0}
+  linePrefab: {fileID: 0}
 --- !u!224 &1095931385 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4225327798817422150, guid: d6582d951b5c93f41bf52f1270409870,
@@ -2694,7 +2700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 243, y: -10}
+  m_AnchoredPosition: {x: 243, y: 30}
   m_SizeDelta: {x: 486, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748880257
@@ -3232,8 +3238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 0, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118410849
 MonoBehaviour:
