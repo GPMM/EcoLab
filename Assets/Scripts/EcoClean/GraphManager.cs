@@ -23,7 +23,19 @@ namespace EcoClean
 
         #region Serialized variables
         [SerializeField]
+        private RectTransform nodeContainer;
+        [SerializeField]
+        private RectTransform verticalLabelContainer;
+        [SerializeField]
+        private RectTransform horizontalLabelContainer;
+        [SerializeField]
+        private GameObject labelPrefab;
+        [SerializeField]
         private Sprite nodeSprite;
+        [SerializeField]
+        private Sprite separatorSprite;
+        [SerializeField]
+        private Color separatorColor = Color.grey;
         [SerializeField]
         private float horizontalMargin;
         [SerializeField]
@@ -31,15 +43,7 @@ namespace EcoClean
         [SerializeField]
         private float graphHorizontalSpacing = 50f;
         [SerializeField]
-        private RectTransform verticalLabelContainer;
-        [SerializeField]
-        private RectTransform horizontalLabelContainer;
-        [SerializeField]
-        private RectTransform nodeContainer;
-        [SerializeField]
-        private RectTransform labelPrefab;
-        [SerializeField]
-        private RectTransform linePrefab;
+        private int verticalSeparatorAmount = 5;
         #endregion Serialized variables
 
         #region Methods
@@ -47,8 +51,9 @@ namespace EcoClean
         {
             ErrorHandler.AssertNullQuit(Instance, "There is more than one GraphController script running.");
             Instance = this;
-            
+
             ErrorHandler.AssertNullQuit(nodeSprite);
+            ErrorHandler.AssertNullQuit(separatorSprite);
 
             ErrorHandler.AssertNullQuit(verticalLabelContainer);
             ErrorHandler.AssertNullQuit(horizontalLabelContainer);
@@ -57,7 +62,7 @@ namespace EcoClean
             SetupNodeContainer();
 
             ErrorHandler.AssertNullQuit(labelPrefab);
-            ErrorHandler.AssertNullQuit(linePrefab);
+            SetupVerticalLabels();
         }
 
         private void SetupNodeContainer()
@@ -66,6 +71,20 @@ namespace EcoClean
             nodeContainerStartingWidth = nodeContainer.sizeDelta.x;
         }
 
+        private void SetupVerticalLabels()
+        {
+            if (verticalSeparatorAmount > 1)
+            {
+                for (int i = 0; i < verticalSeparatorAmount; i++)
+                {
+                    int percentage = i * 100 / (verticalSeparatorAmount - 1);
+                
+                    CreateVerticalLabel(percentage, MapValueToGraphVerticalCoordinates(i, verticalSeparatorAmount - 1) + 40f);
+                }
+            }
+        }
+
+        #region Element creation
         private GameObject CreateNode(string name, Vector2 anchoredPosition, Color color)
         {
             float diameter = Config.UI_GRAPH_NODE_DIAMETER;
@@ -115,6 +134,47 @@ namespace EcoClean
             return edge;
         }
 
+        private GameObject CreateVerticalLabel(int number, float position)
+        {
+            Vector2 positionVector = new Vector2(
+                -30f,
+                position);
+
+            return CreateLabel(number.ToString() + "%", positionVector, verticalLabelContainer);
+        }
+
+        private GameObject CreateHorizontalLabel(int day, float position)
+        {
+            Vector2 positionVector = new Vector2(
+                position,
+                10f);
+
+            return CreateLabel(day.ToString(), positionVector, horizontalLabelContainer);
+        }
+
+        private GameObject CreateLabel(string text, Vector2 position, RectTransform parent)
+        {
+            GameObject label = Instantiate(labelPrefab, parent);
+
+            RectTransform rectTransform = label.GetComponent<RectTransform>();
+            ErrorHandler.AssertNullQuit(rectTransform);
+
+            Text textComponent = label.GetComponent<Text>();
+            ErrorHandler.AssertNullQuit(textComponent);
+
+            rectTransform.anchoredPosition = position;
+
+            textComponent.text = text;
+
+            return label;
+        }
+        #endregion Element creation
+
+        private float MapValueToGraphVerticalCoordinates(float value, float maxValue)
+        {
+            return (value / maxValue * (graphHeight - (verticalMargin * 2))) + verticalMargin;
+        }
+
         public void RenderGraph(Element element, float value, int day, float maxValue)
         {
             // Find the X index of this node based on the current day simulated.
@@ -128,7 +188,7 @@ namespace EcoClean
             // Calculating the new node's position in the graph.
             Vector2 position = new Vector2(
                 nodeIndex * graphHorizontalSpacing + horizontalMargin,
-                (value / maxValue * (graphHeight - (verticalMargin * 2))) + verticalMargin);
+                MapValueToGraphVerticalCoordinates(value, maxValue));
 
             // Instantiating the new node.
             GameObject node = CreateNode(element.Name, position, element.ElementColor);
@@ -147,7 +207,9 @@ namespace EcoClean
             // If there is no day label regarding this day, instantiate a new one.
             if (!dayLabelsInGraph.Contains(day))
             {
+                CreateHorizontalLabel(day, position.x);
 
+                dayLabelsInGraph.Add(day);
             }
 
             // Refresh the container's width to allow for all new nodes to be shown.
