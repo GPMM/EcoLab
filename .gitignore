@@ -340,6 +340,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+<<<<<<< HEAD
 /Temp
 /Assets/Plugins/GitHub/Editor
 /Library/gfu/cache
@@ -347,3 +348,5 @@ healthchecksdb
 /Library/PackageCache/com.unity.ide.rider@1.1.4
 /Library/PlayerDataCache/WebGL
 /Library/webgl_cache
+=======
+>>>>>>> f7664d747fa43fbddda7b5ffcfbc66b8adde3400
