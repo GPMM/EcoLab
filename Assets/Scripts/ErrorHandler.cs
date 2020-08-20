@@ -8,7 +8,7 @@ public class ErrorHandler
     #endregion
 
     #region Methods
-    public static void AssertNull(object obj, string message)
+    public static void AssertNull(object obj, string message = null)
     {
         if (obj is null)
         {
@@ -22,16 +22,18 @@ public class ErrorHandler
             }
         }
     }
-
-    public static void AssertNullQuit(object obj, string message = null)
+    public static void AssertExists(object obj, string message = null)
     {
-        try
+        if (!(obj is null))
         {
-            AssertNull(obj, message);
-        }
-        catch
-        {
-            Application.Quit();
+            if (!string.IsNullOrWhiteSpace(message))
+            {
+                throw new Exception(message);
+            }
+            else
+            {
+                throw new ArgumentNullException(obj.GetType().Name);
+            }
         }
     }
 

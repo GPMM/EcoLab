@@ -4,6 +4,7 @@
     {
         NONE,
         MICROORGANISM,
-        POLLUTANT
+        POLLUTANT,
+        CONSUMPTION
     }
 }

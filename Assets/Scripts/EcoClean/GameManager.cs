@@ -60,38 +60,38 @@ namespace EcoClean
         #region Unity methods
         private void Awake()
         {
-            ErrorHandler.AssertNullQuit(Instance, "There is more than one GameLogic script running.");
+            ErrorHandler.AssertExists(Instance, "There is more than one GameLogic script running.");
             Instance = this;
             
             GameObject hexesGameObject = GameObject.Find("Hexes");
-            ErrorHandler.AssertNullQuit(hexesGameObject, "Hexes object not found! Cannot proceed execution.");
+            ErrorHandler.AssertNull(hexesGameObject, "Hexes object not found! Cannot proceed execution.");
             
             hexMap = hexesGameObject.GetComponent<HexMap>();
-            ErrorHandler.AssertNullQuit(hexMap, "HexMap script not found in GameManager object!");
+            ErrorHandler.AssertNull(hexMap, "HexMap script not found in GameManager object!");
             
             MainCamera = Camera.main;
-            ErrorHandler.AssertNullQuit(MainCamera, "MainCamera object not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(MainCamera, "MainCamera object not found! Cannot proceed execution!");
             
             AnimCamera = MainCamera.GetComponent<Animation>();
-            ErrorHandler.AssertNullQuit(AnimCamera, "Main Camera Animation component not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(AnimCamera, "Main Camera Animation component not found! Cannot proceed execution!");
             
-            ErrorHandler.AssertNullQuit(GraphPanel, "GraphPanel object not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(GraphPanel, "GraphPanel object not found! Cannot proceed execution!");
             
             AnimGraph = GraphPanel.GetComponent<Animation>();
-            ErrorHandler.AssertNullQuit(AnimGraph, "Graph Panel Animation component not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(AnimGraph, "Graph Panel Animation component not found! Cannot proceed execution!");
             
-            ErrorHandler.AssertNullQuit(ButtonPanel, "ButtonPanel object component not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(ButtonPanel, "ButtonPanel object component not found! Cannot proceed execution!");
             
             AnimButton = ButtonPanel.GetComponent<Animation>();
-            ErrorHandler.AssertNullQuit(AnimButton, "Button Panel Animation component not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(AnimButton, "Button Panel Animation component not found! Cannot proceed execution!");
             
-            ErrorHandler.AssertNullQuit(ButtonPrefab, "Button prefab not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(ButtonPrefab, "Button prefab not found! Cannot proceed execution!");
             
-            ErrorHandler.AssertNullQuit(TimeScale, "Time Scale object not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(TimeScale, "Time Scale object not found! Cannot proceed execution!");
             
             timeScaleText = TimeScale.GetComponent<TextMeshProUGUI>();
             
-            ErrorHandler.AssertNullQuit(timeScaleText, "Time Scale TextMeshPro not found! Cannot proceed execution!");
+            ErrorHandler.AssertNull(timeScaleText, "Time Scale TextMeshPro not found! Cannot proceed execution!");
         }
 
         private void Start()
@@ -215,19 +215,19 @@ namespace EcoClean
         /// </summary>
         private void FeedingPhase()
         {
-            Dictionary<Tuple<Microorganism, Pollutant>, float> consumptionPerMicroorganism = Tick.GetEmptyConsumptionPerMicroorganism();
+            Dictionary<Consumption, float> consumptionPerMicroorganism = Tick.GetEmptyConsumptionPerMicroorganism();
 
             foreach (PetriDishSlot petriDishSlot in hexMap.AllHexes)
             {
                 if (petriDishSlot.Microorganism != null)
                 {
-                    Tuple<Microorganism, Pollutant> key = new Tuple<Microorganism, Pollutant>(petriDishSlot.Microorganism, petriDishSlot.Pollutant);
-
                     float amountConsumed = Feed(petriDishSlot);
 
                     if (!(petriDishSlot.Microorganism is null) && !(petriDishSlot.Pollutant is null))
                     {
-                        consumptionPerMicroorganism[key] += amountConsumed;
+                        Consumption consumption = new Consumption(petriDishSlot.Microorganism, petriDishSlot.Pollutant);
+
+                        consumptionPerMicroorganism[consumption] += amountConsumed;
                     }
                 }
             }
@@ -258,8 +258,8 @@ namespace EcoClean
             if (petriDishSlot.Microorganism != null && petriDishSlot.Pollutant != null)
             {
                 float reaction = Repository.GetReaction(
-                    petriDishSlot.Microorganism.Name,
-                    petriDishSlot.Pollutant.Name);
+                    petriDishSlot.Microorganism,
+                    petriDishSlot.Pollutant);
 
                 // Generates a random deviation multiplier from the expected reaction,
                 // ranging from -1.0f to 1.0f.

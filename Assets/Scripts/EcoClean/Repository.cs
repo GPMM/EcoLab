@@ -5,20 +5,23 @@ using UnityEngine;
 
 namespace EcoClean
 {
-    public class Repository
+    public static class Repository
     {
-        #region Constructors
-        private Repository() { }
-        #endregion
-
         #region Methods
+        private static Microorganism PROTOBacteriaA = new Microorganism("Bacteria A", Color.blue, 0.05f);
+        private static Microorganism PROTOBacteriaB = new Microorganism("Bacteria B", Color.red, 0.03f);
+        private static Microorganism PROTOBacteriaC = new Microorganism("Bacteria C", Color.yellow, 0.02f);
+
+        private static Pollutant PROTOPollutantA = new Pollutant("Pollutant A", Color.green);
+        private static Pollutant PROTOPollutantB = new Pollutant("Pollutant B", Color.magenta);
+
         public static IEnumerable<Microorganism> GetMicroorganisms()
         {
             List<Microorganism> microorganisms = new List<Microorganism>()
             {
-                new Microorganism("Bacteria A", Color.blue, 0.05f),
-                new Microorganism("Bacteria B", Color.red, 0.03f),
-                new Microorganism("Bacteria C", Color.yellow, 0.02f)
+                PROTOBacteriaA,
+                PROTOBacteriaB,
+                PROTOBacteriaC
             };
 
             microorganisms.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -42,8 +45,8 @@ namespace EcoClean
         {
             List<Pollutant> pollutants = new List<Pollutant>()
             {
-                new Pollutant("Pollutant A", Color.green),
-                new Pollutant("Pollutant B", Color.magenta)
+                PROTOPollutantA,
+                PROTOPollutantB
             };
 
             pollutants.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -63,14 +66,14 @@ namespace EcoClean
             return pollutants;
         }
 
-        private static Dictionary<Tuple<string, string>, float> reactionTable = new Dictionary<Tuple<string, string>, float>()
+        private static Dictionary<Consumption, float> reactionTable = new Dictionary<Consumption, float>()
         {
-            { new Tuple<string, string>("Bacteria A", "Pollutant A"), 0.21f },
-            { new Tuple<string, string>("Bacteria A", "Pollutant B"), -0.08f },
-            { new Tuple<string, string>("Bacteria B", "Pollutant A"), 0.12f },
-            { new Tuple<string, string>("Bacteria B", "Pollutant B"), 0.15f },
-            { new Tuple<string, string>("Bacteria C", "Pollutant A"), -0.09f },
-            { new Tuple<string, string>("Bacteria C", "Pollutant B"), 0.11f }
+            { new Consumption(PROTOBacteriaA, PROTOPollutantA), 0.21f },
+            { new Consumption(PROTOBacteriaA, PROTOPollutantB), -0.08f },
+            { new Consumption(PROTOBacteriaB, PROTOPollutantA), 0.12f },
+            { new Consumption(PROTOBacteriaB, PROTOPollutantB), 0.15f },
+            { new Consumption(PROTOBacteriaC, PROTOPollutantA), -0.09f },
+            { new Consumption(PROTOBacteriaC, PROTOPollutantB), 0.11f }
         };
 
         /// <summary>
@@ -79,9 +82,9 @@ namespace EcoClean
         /// <param name="microorganism">The Microorganism name</param>
         /// <param name="pollutant">The Pollutant name</param>
         /// <returns>The amount of change in the microorganism's energy per tick</returns>
-        public static float GetReaction (string microorganism, string pollutant)
+        public static float GetReaction (Microorganism microorganism, Pollutant pollutant)
         {
-            return reactionTable[new Tuple<string, string>(microorganism, pollutant)];
+            return reactionTable[new Consumption(microorganism, pollutant)];
         }
         #endregion
     }

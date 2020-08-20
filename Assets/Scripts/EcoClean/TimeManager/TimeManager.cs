@@ -34,7 +34,7 @@ namespace EcoClean.TimeManaging
             simulationInstances.Add(currentSimulation);
         }
 
-        public static void CalculateNewTick(Dictionary<Tuple<Microorganism, Pollutant>, float> consumptionPerMicroorganism, bool updateGraph)
+        public static void CalculateNewTick(Dictionary<Consumption, float> consumptionPerMicroorganism, bool updateGraph)
         {
             List<Hex> hexes = currentSimulation.HexMap.AllHexes;
             Tick tick = currentSimulation.GetNextTick();
@@ -89,6 +89,17 @@ namespace EcoClean.TimeManaging
                 if (amount > 0)
                 {
                     GraphManager.Instance.RenderGraph(pollutant, amount, tick.Day, maxValuePollutants);
+                }
+            }
+
+            foreach (Consumption consumption in tick.ConsumptionPerMicroorganism.Keys)
+            {
+                float amount = tick.ConsumptionPerMicroorganism[consumption];
+                float maxValueConsumption = Repository.GetReaction(consumption.Microorganism, consumption.Pollutant) * GameManager.Instance.hexMap.CachedHexCount;
+
+                if (amount > 0)
+                {
+                    GraphManager.Instance.RenderGraph(consumption, amount, tick.Day, maxValueConsumption);
                 }
             }
         }

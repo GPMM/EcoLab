@@ -29,11 +29,13 @@ namespace EcoClean
         [SerializeField]
         private RectTransform horizontalLabelContainer;
         [SerializeField]
+        private Scrollbar scrollbar;
+        [SerializeField]
         private GameObject labelPrefab;
         [SerializeField]
-        private Sprite nodeSprite;
+        private Sprite nodeImage;
         [SerializeField]
-        private Sprite separatorSprite;
+        private Sprite separatorImage;
         [SerializeField]
         private Color separatorColor = Color.grey;
         [SerializeField]
@@ -49,20 +51,21 @@ namespace EcoClean
         #region Methods
         private void Awake()
         {
-            ErrorHandler.AssertNullQuit(Instance, "There is more than one GraphController script running.");
+            ErrorHandler.AssertExists(Instance, "There is more than one GraphController script running.");
             Instance = this;
 
-            ErrorHandler.AssertNullQuit(nodeSprite);
-            ErrorHandler.AssertNullQuit(separatorSprite);
+            ErrorHandler.AssertNull(nodeImage);
+            ErrorHandler.AssertNull(separatorImage);
 
-            ErrorHandler.AssertNullQuit(verticalLabelContainer);
-            ErrorHandler.AssertNullQuit(horizontalLabelContainer);
+            ErrorHandler.AssertNull(scrollbar);
+            ErrorHandler.AssertNull(verticalLabelContainer);
+            ErrorHandler.AssertNull(horizontalLabelContainer);
 
-            ErrorHandler.AssertNullQuit(nodeContainer);
+            ErrorHandler.AssertNull(nodeContainer);
             SetupNodeContainer();
 
-            ErrorHandler.AssertNullQuit(labelPrefab);
-            SetupVerticalLabels();
+            ErrorHandler.AssertNull(labelPrefab);
+            SetupHorizontalLabels();
         }
 
         private void SetupNodeContainer()
@@ -71,7 +74,7 @@ namespace EcoClean
             nodeContainerStartingWidth = nodeContainer.sizeDelta.x;
         }
 
-        private void SetupVerticalLabels()
+        private void SetupHorizontalLabels()
         {
             if (verticalSeparatorAmount > 1)
             {
@@ -79,7 +82,18 @@ namespace EcoClean
                 {
                     int percentage = i * 100 / (verticalSeparatorAmount - 1);
                 
-                    CreateVerticalLabel(percentage, MapValueToGraphVerticalCoordinates(i, verticalSeparatorAmount - 1) + 40f);
+                    CreateHorizontalLabel(percentage, MapValueToGraphVerticalCoordinates(i, verticalSeparatorAmount - 1) + 40f);
+                }
+            }
+        }
+
+        private void SetupHorizontalSeparators()
+        {
+            if (verticalSeparatorAmount > 1)
+            {
+                for (int i = 0; i < verticalSeparatorAmount; i++)
+                {
+                    CreateHorizontalSeparator(MapValueToGraphVerticalCoordinates(i, verticalSeparatorAmount - 1));
                 }
             }
         }
@@ -95,7 +109,7 @@ namespace EcoClean
 
             // Setting the edge's color
             Image image = node.GetComponent<Image>();
-            image.sprite = nodeSprite;
+            image.sprite = nodeImage;
             image.color = color;
 
             // Setting position and rotation
@@ -134,22 +148,24 @@ namespace EcoClean
             return edge;
         }
 
-        private GameObject CreateVerticalLabel(int number, float position)
+        private GameObject CreateHorizontalLabel(int number, float position)
         {
             Vector2 positionVector = new Vector2(
                 -30f,
                 position);
 
-            return CreateLabel(number.ToString() + "%", positionVector, verticalLabelContainer);
+            CreateHorizontalSeparator(position);
+
+            return CreateLabel(number.ToString() + "%", positionVector, horizontalLabelContainer);
         }
 
-        private GameObject CreateHorizontalLabel(int day, float position)
+        private GameObject CreateVerticalLabel(int day, float position)
         {
             Vector2 positionVector = new Vector2(
                 position,
                 -30f);
 
-            return CreateLabel(day.ToString(), positionVector, horizontalLabelContainer);
+            return CreateLabel(day.ToString(), positionVector, verticalLabelContainer);
         }
 
         private GameObject CreateLabel(string text, Vector2 position, RectTransform parent)
@@ -157,10 +173,10 @@ namespace EcoClean
             GameObject label = Instantiate(labelPrefab, parent);
 
             RectTransform rectTransform = label.GetComponent<RectTransform>();
-            ErrorHandler.AssertNullQuit(rectTransform);
+            ErrorHandler.AssertNull(rectTransform);
 
             Text textComponent = label.GetComponent<Text>();
-            ErrorHandler.AssertNullQuit(textComponent);
+            ErrorHandler.AssertNull(textComponent);
 
             rectTransform.anchoredPosition = position;
 
@@ -168,6 +184,28 @@ namespace EcoClean
 
             return label;
         }
+
+        private GameObject CreateHorizontalSeparator(float position)
+        {
+            // Creating the edge with an Image component
+            GameObject separator = new GameObject("Separator", typeof(Image));
+            separator.transform.SetParent(nodeContainer, false);
+
+            // Setting the edge's color
+            Image image = separator.GetComponent<Image>();
+            image.sprite = separatorImage;
+            image.color = separatorColor;
+
+            // Setting position and rotation
+            RectTransform rectTransform = separator.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(0, position);
+            rectTransform.sizeDelta = new Vector2(1, Config.UI_GRAPH_SEPARATOR_THICKNESS);
+            rectTransform.anchorMin = new Vector2(0, 0);
+            rectTransform.anchorMax = new Vector2(1, 0);
+
+            return separator;
+        }
+
         #endregion Element creation
 
         private float MapValueToGraphVerticalCoordinates(float value, float maxValue)
@@ -207,7 +245,7 @@ namespace EcoClean
             // If there is no day label regarding this day, instantiate a new one.
             if (!dayLabelsInGraph.Contains(day))
             {
-                CreateHorizontalLabel(day, position.x);
+                CreateVerticalLabel(day, position.x);
 
                 dayLabelsInGraph.Add(day);
             }
@@ -229,6 +267,8 @@ namespace EcoClean
             {
                 Destroy(child.gameObject);
             }
+
+            SetupHorizontalSeparators();
         }
 
         private void UpdateGraphWidth(int day)
@@ -238,6 +278,8 @@ namespace EcoClean
                         (horizontalMargin * 2) + (graphHorizontalSpacing * (day)),
                         nodeContainerStartingWidth),
                     nodeContainer.sizeDelta.y);
+
+            scrollbar.value = 1;
         }
         #endregion Properties
     }

@@ -22,9 +22,10 @@
         };
 
         // UI
-        public const float UI_GRAPH_NODE_DIAMETER = 8f;
+        public const float UI_GRAPH_NODE_DIAMETER = 5f;
         public const float UI_GRAPH_EDGE_THICKNESS = 3f;
-        public const float UI_GRAPH_EDGE_ALPHA = 0.4f;
+        public const float UI_GRAPH_EDGE_ALPHA = 0.5f;
+        public const float UI_GRAPH_SEPARATOR_THICKNESS = 2f;
         #endregion
     }
 }

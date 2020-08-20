@@ -35,11 +35,11 @@ namespace EcoClean.TimeManaging.Domain
             get;
         } = new Dictionary<Pollutant, float>();
 
-        public Dictionary<Tuple<Microorganism, Pollutant>, float> ConsumptionPerMicroorganism
+        public Dictionary<Consumption, float> ConsumptionPerMicroorganism
         {
             get;
             set;
-        } = new Dictionary<Tuple<Microorganism, Pollutant>, float>();
+        } = new Dictionary<Consumption, float>();
         #endregion Properties
 
         #region Methods
@@ -70,19 +70,19 @@ namespace EcoClean.TimeManaging.Domain
             //ConsumptionPerMicroorganism = GetEmptyConsumptionPerMicroorganism();
         }
         
-        public static Dictionary<Tuple<Microorganism, Pollutant>, float> GetEmptyConsumptionPerMicroorganism()
+        public static Dictionary<Consumption, float> GetEmptyConsumptionPerMicroorganism()
         {
             List<Microorganism> microorganisms = Repository.GetMicroorganisms().ToList();
             List<Pollutant> pollutants = Repository.GetPollutants().ToList();
 
-            Dictionary<Tuple<Microorganism, Pollutant>, float> consumptionPerMicroorganism = new Dictionary<Tuple<Microorganism, Pollutant>, float>();
+            Dictionary<Consumption, float> consumptionPerMicroorganism = new Dictionary<Consumption, float>();
 
             foreach (Microorganism microorganism in microorganisms)
             {
                 foreach (Pollutant pollutant in pollutants)
                 {
                     consumptionPerMicroorganism.Add(
-                        new Tuple<Microorganism, Pollutant>(microorganism, pollutant),
+                        new Consumption(microorganism, pollutant),
                         0);
                 }
             }
