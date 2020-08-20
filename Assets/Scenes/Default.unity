@@ -655,17 +655,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b66a2a3c575a2841a2afd6edee0d5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeContainer: {fileID: 721685039}
+  verticalLabelContainer: {fileID: 1090145799}
+  horizontalLabelContainer: {fileID: 721685039}
+  labelPrefab: {fileID: 4225327798817422151, guid: d6582d951b5c93f41bf52f1270409870,
+    type: 3}
   nodeSprite: {fileID: 21300000, guid: 0768551e462e5eb4e97b120dd6f05f58, type: 3}
   separatorSprite: {fileID: 21300000, guid: e88251859ee0000449b833063c2c02d1, type: 3}
   separatorColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   horizontalMargin: 15
   verticalMargin: 10
   graphHorizontalSpacing: 50
-  verticalLabelContainer: {fileID: 1090145799}
-  horizontalLabelContainer: {fileID: 2118410848}
-  nodeContainer: {fileID: 721685039}
-  labelPrefab: {fileID: 4225327798817422151, guid: d6582d951b5c93f41bf52f1270409870,
-    type: 3}
+  verticalSeparatorAmount: 5
 --- !u!1 &1096841805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

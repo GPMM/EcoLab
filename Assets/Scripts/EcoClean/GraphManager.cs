@@ -147,7 +147,7 @@ namespace EcoClean
         {
             Vector2 positionVector = new Vector2(
                 position,
-                10f);
+                -30f);
 
             return CreateLabel(day.ToString(), positionVector, horizontalLabelContainer);
         }
