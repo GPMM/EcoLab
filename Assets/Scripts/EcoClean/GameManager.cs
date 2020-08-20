@@ -365,6 +365,9 @@ namespace EcoClean
 
                 button.GetComponentInChildren<Text>().text = microorganism.Name;
 
+                Image image = button.GetComponent<Image>();
+                image.color = Color.Lerp(image.color, microorganism.ElementColor, 0.5f);
+
                 button.GetComponent<Button>().onClick.AddListener(() => UISelectMicroorganism(microorganism.Name));
             }
 
@@ -375,6 +378,9 @@ namespace EcoClean
                     ButtonPanel.transform);
 
                 button.GetComponentInChildren<Text>().text = pollutant.Name;
+
+                Image image = button.GetComponent<Image>();
+                image.color = Color.Lerp(image.color, pollutant.ElementColor, 0.5f);
 
                 button.GetComponent<Button>().onClick.AddListener(() => UISelectPollutant(pollutant.Name));
             }
