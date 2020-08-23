@@ -12,7 +12,7 @@ namespace EcoClean
         private static Microorganism PROTOBacteriaB = new Microorganism("Bacteria B", Color.red, 0.03f);
         private static Microorganism PROTOBacteriaC = new Microorganism("Bacteria C", Color.yellow, 0.02f);
 
-        private static Pollutant PROTOPollutantA = new Pollutant("Pollutant A", Color.green);
+        private static Pollutant PROTOPollutantA = new Pollutant("Pollutant A", Color.cyan);
         private static Pollutant PROTOPollutantB = new Pollutant("Pollutant B", Color.magenta);
 
         public static IEnumerable<Microorganism> GetMicroorganisms()
