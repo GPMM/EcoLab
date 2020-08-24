@@ -22,6 +22,7 @@
         };
 
         // UI
+        public const float UI_COLOR_BLEND = 0.5f;
         public const float UI_GRAPH_NODE_DIAMETER = 5f;
         public const float UI_GRAPH_EDGE_THICKNESS = 3f;
         public const float UI_GRAPH_EDGE_ALPHA = 0.5f;

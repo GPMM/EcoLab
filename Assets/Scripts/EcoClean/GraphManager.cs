@@ -19,6 +19,7 @@ namespace EcoClean
 
         private readonly Dictionary<Element, GameObject> lastNodeDict = new Dictionary<Element, GameObject>();
         private readonly List<int> dayLabelsInGraph = new List<int>();
+        private readonly List<Element> elementsWithLegend = new List<Element>();
         #endregion Local variables
 
         #region Serialized variables
@@ -29,9 +30,13 @@ namespace EcoClean
         [SerializeField]
         private RectTransform horizontalLabelContainer;
         [SerializeField]
+        private RectTransform legendContainer;
+        [SerializeField]
         private Scrollbar scrollbar;
         [SerializeField]
         private GameObject labelPrefab;
+        [SerializeField]
+        private GameObject legendPrefab;
         [SerializeField]
         private Sprite nodeImage;
         [SerializeField]
@@ -60,9 +65,12 @@ namespace EcoClean
             ErrorHandler.AssertNull(scrollbar);
             ErrorHandler.AssertNull(verticalLabelContainer);
             ErrorHandler.AssertNull(horizontalLabelContainer);
+            ErrorHandler.AssertNull(legendContainer);
 
             ErrorHandler.AssertNull(nodeContainer);
             SetupNodeContainer();
+
+            ErrorHandler.AssertNull(legendPrefab);
 
             ErrorHandler.AssertNull(labelPrefab);
             SetupHorizontalLabels();
@@ -206,6 +214,19 @@ namespace EcoClean
             return separator;
         }
 
+        private GameObject CreateLegend(Element element)
+        {
+            GameObject gameObject = Instantiate(legendPrefab, legendContainer);
+
+            Image image = gameObject.GetComponent<Image>();
+            image.color = Color.Lerp(image.color, element.ElementColor, 0.8f);
+
+            Text text = gameObject.GetComponentInChildren<Text>();
+            text.text = element.Name;
+
+            return gameObject;
+        }
+
         #endregion Element creation
 
         private float MapValueToGraphVerticalCoordinates(float value, float maxValue)
@@ -222,6 +243,14 @@ namespace EcoClean
 
             // Find the last node of this element type, if there is any.
             lastNodeDict.TryGetValue(element, out GameObject lastNode);
+
+            // If this element has no legend in the graph, create a new one.
+            if (!elementsWithLegend.Contains(element))
+            {
+                elementsWithLegend.Add(element);
+
+                CreateLegend(element);
+            }
 
             // Calculating the new node's position in the graph.
             Vector2 position = new Vector2(
@@ -262,8 +291,14 @@ namespace EcoClean
         {
             lastNodeDict.Clear();
             dayLabelsInGraph.Clear();
+            elementsWithLegend.Clear();
 
             foreach (Transform child in nodeContainer.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (Transform child in legendContainer.transform)
             {
                 Destroy(child.gameObject);
             }
