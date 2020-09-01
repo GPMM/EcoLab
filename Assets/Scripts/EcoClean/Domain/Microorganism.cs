@@ -9,11 +9,11 @@ namespace EcoClean.Domain
         {
             PassiveEnergyLoss = passiveEnergyLoss;
         }
-        #endregion
+        #endregion Constructors
 
-        #region Properties
+        #region Fields
         public float PassiveEnergyLoss { get; }
-        #endregion
+        #endregion Fields
 
         #region Operators
         public static bool operator ==(Microorganism a, Microorganism b)
@@ -23,7 +23,7 @@ namespace EcoClean.Domain
                 return a is null && b is null;
             }
 
-            return a.Name == b.Name;
+            return a.name == b.name;
         }
         public static bool operator !=(Microorganism a, Microorganism b)
         {
@@ -39,13 +39,17 @@ namespace EcoClean.Domain
             else
             {
                 Microorganism m = (Microorganism)obj;
-                return Name == m.Name;
+                return name == m.name;
             }
         }
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return name.GetHashCode();
         }
-        #endregion
+        public override string ToString()
+        {
+            return name;
+        }
+        #endregion Operators
     }
 }

@@ -134,9 +134,9 @@ namespace EcoClean.Domain
                 float transparency = MicroorganismAmount / Config.SLOT_MAX_MICROORGANISMS;
 
                 color = new Color(
-                    microorganism.ElementColor.r,
-                    microorganism.ElementColor.g,
-                    microorganism.ElementColor.b,
+                    microorganism.elementColor.r,
+                    microorganism.elementColor.g,
+                    microorganism.elementColor.b,
                     transparency);
             }
 
@@ -152,9 +152,9 @@ namespace EcoClean.Domain
                 float transparency = PollutantAmount / Config.SLOT_MAX_REAGENTS;
 
                 color = new Color(
-                    pollutant.ElementColor.r,
-                    pollutant.ElementColor.g,
-                    pollutant.ElementColor.b,
+                    pollutant.elementColor.r,
+                    pollutant.elementColor.g,
+                    pollutant.elementColor.b,
                     transparency);
             }
 

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CubicHex\HexMap.cs" />
     <Compile Include="Assets\Scripts\CubicHex\Pathfinder.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Config.cs" />
+    <Compile Include="Assets\Scripts\EcoClean\Domain\Consumption.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\Element.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\ElementType.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\Microorganism.cs" />
@@ -275,6 +276,9 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.0f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/TCC2 - Project Eco-clean/Assets/Plugins/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.0f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

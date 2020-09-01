@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace EcoClean.TimeManaging.Domain
 {
+    [Serializable]
     public class SimulationInstance
     {
         #region Constructors
@@ -18,7 +19,7 @@ namespace EcoClean.TimeManaging.Domain
                 ErrorHandler.LogError(message, exception);
             }
 
-            HexMap = hexMap;
+            this.hexMap = hexMap;
         }
         #endregion Constructors
 
@@ -26,10 +27,10 @@ namespace EcoClean.TimeManaging.Domain
         private int nextDay = 0;
         #endregion Local variables
 
-        #region Properties
-        public List<Tick> Ticks { get; } = new List<Tick>();
-        public HexMap HexMap { get; }
-        #endregion Properties
+        #region Fields
+        public readonly List<Tick> ticks = new List<Tick>();
+        public readonly HexMap hexMap;
+        #endregion Fields
 
         #region Methods
         /// <summary>
@@ -40,7 +41,7 @@ namespace EcoClean.TimeManaging.Domain
         {
             Tick tick = new Tick(nextDay++);
 
-            Ticks.Add(tick);
+            ticks.Add(tick);
 
             return tick;
         }

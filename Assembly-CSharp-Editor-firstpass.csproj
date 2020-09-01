@@ -286,6 +286,9 @@
     <Reference Include="sfw.net">
       <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/TCC2 - Project Eco-clean/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/TCC2 - Project Eco-clean/Assets/Plugins/Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/TCC2 - Project Eco-clean/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>

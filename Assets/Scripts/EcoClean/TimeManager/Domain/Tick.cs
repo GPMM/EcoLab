@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace EcoClean.TimeManaging.Domain
 {
+    [Serializable]
     public class Tick
     {
         #region Constructors
@@ -18,29 +19,23 @@ namespace EcoClean.TimeManaging.Domain
 
             InitiateCountedIndexes();
 
-            Day = day;
+            this.day = day;
         }
         #endregion Constructors
 
-        #region Properties
-        public int Day { get; }
+        #region Fields
+        public readonly int day;
 
-        public Dictionary<Microorganism, float> MicroorganismAmount
-        {
-            get;
-        } = new Dictionary<Microorganism, float>();
+        public readonly Dictionary<Microorganism, float> microorganismAmount = new Dictionary<Microorganism, float>();
 
-        public Dictionary<Pollutant, float> PollutantAmount
-        {
-            get;
-        } = new Dictionary<Pollutant, float>();
+        public readonly Dictionary<Pollutant, float> pollutantAmount = new Dictionary<Pollutant, float>();
 
-        public Dictionary<Consumption, float> ConsumptionPerMicroorganism
+        public Dictionary<Consumption, float> consumptionPerMicroorganism
         {
             get;
             set;
         } = new Dictionary<Consumption, float>();
-        #endregion Properties
+        #endregion Fields
 
         #region Methods
         /// <summary>
@@ -56,13 +51,13 @@ namespace EcoClean.TimeManaging.Domain
             // Ensures all microorganisms are set in the dictionary
             foreach (Microorganism microorganism in microorganisms)
             {
-                MicroorganismAmount.Add(microorganism, 0);
+                microorganismAmount.Add(microorganism, 0);
             }
 
             // Ensures all pollutants are set in the dictionary
             foreach (Pollutant pollutant in pollutants)
             {
-                PollutantAmount.Add(pollutant, 0);
+                pollutantAmount.Add(pollutant, 0);
             }
 
             // Ensures all microorganism-pollutant relations are set in the dictionary

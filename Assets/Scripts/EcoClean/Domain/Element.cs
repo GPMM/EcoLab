@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EcoClean.Domain
 {
@@ -12,16 +7,16 @@ namespace EcoClean.Domain
         #region Constructors
         public Element(string name, Color elementColor, ElementType elementType)
         {
-            Name = name;
-            ElementColor = elementColor;
-            ElementType = elementType;
+            this.name = name;
+            this.elementColor = elementColor;
+            this.elementType = elementType;
         }
         #endregion Constructors
 
         #region Properties
-        public ElementType ElementType { get; }
-        public string Name { get; }
-        public Color ElementColor { get; }
+        public readonly ElementType elementType;
+        public readonly string name;
+        public readonly Color elementColor;
         #endregion Properties
     }
 }

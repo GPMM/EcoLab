@@ -19,7 +19,7 @@ namespace EcoClean.Domain
                 return a is null && b is null;
             }
 
-            return a.Name == b.Name;
+            return a.name == b.name;
         }
         public static bool operator !=(Pollutant a, Pollutant b)
         {
@@ -35,12 +35,16 @@ namespace EcoClean.Domain
             else
             {
                 Pollutant r = (Pollutant)obj;
-                return Name == r.Name;
+                return name == r.name;
             }
         }
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return name.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return name;
         }
         #endregion
     }

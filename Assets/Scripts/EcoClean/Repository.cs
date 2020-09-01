@@ -24,7 +24,7 @@ namespace EcoClean
                 PROTOBacteriaC
             };
 
-            microorganisms.Sort((x, y) => x.Name.CompareTo(y.Name));
+            microorganisms.Sort((x, y) => x.name.CompareTo(y.name));
 
             return microorganisms;
         }
@@ -35,7 +35,7 @@ namespace EcoClean
 
             foreach (Microorganism microorganism in GetMicroorganisms())
             {
-                microorganisms.Add(microorganism.Name, microorganism);
+                microorganisms.Add(microorganism.name, microorganism);
             }
             
             return microorganisms;
@@ -49,7 +49,7 @@ namespace EcoClean
                 PROTOPollutantB
             };
 
-            pollutants.Sort((x, y) => x.Name.CompareTo(y.Name));
+            pollutants.Sort((x, y) => x.name.CompareTo(y.name));
 
             return pollutants;
         }
@@ -60,7 +60,7 @@ namespace EcoClean
 
             foreach (Pollutant pollutant in GetPollutants())
             {
-                pollutants.Add(pollutant.Name, pollutant);
+                pollutants.Add(pollutant.name, pollutant);
             }
 
             return pollutants;

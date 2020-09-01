@@ -8,6 +8,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 namespace EcoClean
 {
@@ -128,6 +129,11 @@ namespace EcoClean
         /// </summary>
         private void HandleControls()
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                PROTOSaveJSON();
+            }
+
             if (!simulationIsStarted && Input.GetMouseButton(0))
             {
                 Hex mouseHex = Hex.FindHexAtMousePosition();
@@ -363,12 +369,12 @@ namespace EcoClean
                     ButtonPrefab,
                     ButtonPanel.transform);
 
-                button.GetComponentInChildren<Text>().text = microorganism.Name;
+                button.GetComponentInChildren<Text>().text = microorganism.name;
 
                 Image image = button.GetComponent<Image>();
-                image.color = Color.Lerp(image.color, microorganism.ElementColor, Config.UI_COLOR_BLEND);
+                image.color = Color.Lerp(image.color, microorganism.elementColor, Config.UI_COLOR_BLEND);
 
-                button.GetComponent<Button>().onClick.AddListener(() => UISelectMicroorganism(microorganism.Name));
+                button.GetComponent<Button>().onClick.AddListener(() => UISelectMicroorganism(microorganism.name));
             }
 
             foreach (Pollutant pollutant in pollutants)
@@ -377,12 +383,12 @@ namespace EcoClean
                     ButtonPrefab,
                     ButtonPanel.transform);
 
-                button.GetComponentInChildren<Text>().text = pollutant.Name;
+                button.GetComponentInChildren<Text>().text = pollutant.name;
 
                 Image image = button.GetComponent<Image>();
-                image.color = Color.Lerp(image.color, pollutant.ElementColor, 0.5f);
+                image.color = Color.Lerp(image.color, pollutant.elementColor, 0.5f);
 
-                button.GetComponent<Button>().onClick.AddListener(() => UISelectPollutant(pollutant.Name));
+                button.GetComponent<Button>().onClick.AddListener(() => UISelectPollutant(pollutant.name));
             }
         }
 
@@ -511,6 +517,13 @@ namespace EcoClean
             return true;
         }
         #endregion UI methods
+
+        private void PROTOSaveJSON()
+        {
+            string json = JsonConvert.SerializeObject(TimeManager.CurrentSimulation.ticks.Last(), Formatting.Indented);
+
+            Debug.Log(json);
+        }
 
         #endregion Methods
     }

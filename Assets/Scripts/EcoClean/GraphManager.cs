@@ -219,10 +219,10 @@ namespace EcoClean
             GameObject gameObject = Instantiate(legendPrefab, legendContainer);
 
             Image image = gameObject.GetComponent<Image>();
-            image.color = Color.Lerp(image.color, element.ElementColor, 0.8f);
+            image.color = Color.Lerp(image.color, element.elementColor, 0.8f);
 
             Text text = gameObject.GetComponentInChildren<Text>();
-            text.text = element.Name;
+            text.text = element.name;
 
             return gameObject;
         }
@@ -258,16 +258,16 @@ namespace EcoClean
                 MapValueToGraphVerticalCoordinates(value, maxValue));
 
             // Instantiating the new node.
-            GameObject node = CreateNode(element.Name, position, element.ElementColor);
+            GameObject node = CreateNode(element.name, position, element.elementColor);
 
             // If there was already a node with this element, create an edge between it and the newly created node.
             if (!(lastNode is null))
             {
                 CreateEdge(
-                    element.Name,
+                    element.name,
                     lastNode.GetComponent<RectTransform>().anchoredPosition,
                     node.GetComponent<RectTransform>().anchoredPosition,
-                    element.ElementColor
+                    element.elementColor
                     );
             }
 

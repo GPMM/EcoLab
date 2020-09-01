@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EcoClean.Domain
 {
@@ -11,19 +6,19 @@ namespace EcoClean.Domain
     {
         #region Constructors
         public Consumption(Microorganism microorganism, Pollutant pollutant) : base(
-            microorganism.Name + "-" + pollutant.Name,
-            Color.Lerp(microorganism.ElementColor, pollutant.ElementColor, 0.5f),
+            microorganism.name + "-" + pollutant.name,
+            Color.Lerp(microorganism.elementColor, pollutant.elementColor, 0.5f),
             ElementType.CONSUMPTION)
         {
-            Microorganism = microorganism;
-            Pollutant = pollutant;
+            this.microorganism = microorganism;
+            this.pollutant = pollutant;
         }
         #endregion Constructors
 
-        #region Properties
-        public Microorganism Microorganism { get; }
-        public Pollutant Pollutant { get; }
-        #endregion Properties
+        #region Fields
+        public readonly Microorganism microorganism;
+        public readonly Pollutant pollutant;
+        #endregion Fields
 
         #region Operators
         public static bool operator ==(Consumption a, Consumption b)
@@ -33,7 +28,7 @@ namespace EcoClean.Domain
                 return a is null && b is null;
             }
 
-            return a.Microorganism == b.Microorganism && a.Pollutant == b.Pollutant;
+            return a.microorganism == b.microorganism && a.pollutant == b.pollutant;
         }
         public static bool operator !=(Consumption a, Consumption b)
         {
@@ -54,7 +49,11 @@ namespace EcoClean.Domain
         }
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return name.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return name;
         }
         #endregion Operators
     }
