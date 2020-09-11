@@ -70,11 +70,13 @@
     <Compile Include="Assets\Scripts\EcoClean\Domain\Consumption.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\Element.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\ElementType.cs" />
+    <Compile Include="Assets\Scripts\EcoClean\Domain\Metadata.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\Microorganism.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\PetriDishSlot.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Domain\Pollutant.cs" />
     <Compile Include="Assets\Scripts\EcoClean\GameManager.cs" />
     <Compile Include="Assets\Scripts\EcoClean\GraphManager.cs" />
+    <Compile Include="Assets\Scripts\EcoClean\MetadataManager.cs" />
     <Compile Include="Assets\Scripts\EcoClean\Repository.cs" />
     <Compile Include="Assets\Scripts\EcoClean\TimeManager\Domain\SimulationInstance.cs" />
     <Compile Include="Assets\Scripts\EcoClean\TimeManager\Domain\Tick.cs" />
@@ -90,11 +92,13 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Fonts\Cabin\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Fonts\Cabin\OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
