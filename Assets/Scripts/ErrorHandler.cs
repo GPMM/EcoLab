@@ -1,12 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class ErrorHandler
+public static class ErrorHandler
 {
-    #region Constructors
-    private ErrorHandler() { }
-    #endregion
-
     #region Methods
     public static void AssertNull(object obj, string message = null)
     {

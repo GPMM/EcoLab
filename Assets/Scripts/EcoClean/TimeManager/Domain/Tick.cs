@@ -19,18 +19,18 @@ namespace EcoClean.TimeManaging.Domain
 
             InitiateCountedIndexes();
 
-            this.day = day;
+            Day = day;
         }
         #endregion Constructors
 
         #region Fields
-        public readonly int day;
+        public int Day { get; set; }
 
-        public readonly Dictionary<Microorganism, float> microorganismAmount = new Dictionary<Microorganism, float>();
+        public Dictionary<Microorganism, float> MicroorganismAmount { get; } = new Dictionary<Microorganism, float>();
 
-        public readonly Dictionary<Pollutant, float> pollutantAmount = new Dictionary<Pollutant, float>();
+        public Dictionary<Pollutant, float> PollutantAmount { get; } = new Dictionary<Pollutant, float>();
 
-        public Dictionary<Consumption, float> consumptionPerMicroorganism
+        public Dictionary<Consumption, float> ConsumptionPerMicroorganism
         {
             get;
             set;
@@ -51,13 +51,13 @@ namespace EcoClean.TimeManaging.Domain
             // Ensures all microorganisms are set in the dictionary
             foreach (Microorganism microorganism in microorganisms)
             {
-                microorganismAmount.Add(microorganism, 0);
+                MicroorganismAmount.Add(microorganism, 0);
             }
 
             // Ensures all pollutants are set in the dictionary
             foreach (Pollutant pollutant in pollutants)
             {
-                pollutantAmount.Add(pollutant, 0);
+                PollutantAmount.Add(pollutant, 0);
             }
 
             // Ensures all microorganism-pollutant relations are set in the dictionary

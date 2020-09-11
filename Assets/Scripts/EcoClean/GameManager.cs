@@ -520,7 +520,11 @@ namespace EcoClean
 
         private void PROTOSaveJSON()
         {
-            string json = JsonConvert.SerializeObject(TimeManager.CurrentSimulation.ticks.Last(), Formatting.Indented);
+            Tick tick = TimeManager.CurrentSimulation.ticks.Last();
+
+            Metadata metadata = new Metadata("testUserId", tick);
+
+            string json = JsonConvert.SerializeObject(metadata, Formatting.Indented);
 
             Debug.Log(json);
         }
