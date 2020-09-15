@@ -522,7 +522,7 @@ namespace EcoClean
         {
             Tick tick = TimeManager.CurrentSimulation.ticks.Last();
 
-            Metadata metadata = new Metadata("testUserId", tick);
+            Metadata metadata = new Metadata(MetadataManager.Instance.UserId, tick);
 
             string json = JsonConvert.SerializeObject(metadata, Formatting.Indented);
 

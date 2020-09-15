@@ -10,7 +10,7 @@ namespace EcoClean.TimeManaging.Domain
     public class Tick
     {
         #region Constructors
-        public Tick(int day)
+        public Tick(int day, string simulationId)
         {
             if (day < 0)
             {
@@ -20,11 +20,14 @@ namespace EcoClean.TimeManaging.Domain
             InitiateCountedIndexes();
 
             Day = day;
+            SimulationId = simulationId;
         }
         #endregion Constructors
 
-        #region Fields
-        public int Day { get; set; }
+        #region Properties
+        public int Day { get; }
+
+        public string SimulationId { get; }
 
         public Dictionary<Microorganism, float> MicroorganismAmount { get; } = new Dictionary<Microorganism, float>();
 
@@ -35,7 +38,7 @@ namespace EcoClean.TimeManaging.Domain
             get;
             set;
         } = new Dictionary<Consumption, float>();
-        #endregion Fields
+        #endregion Properties
 
         #region Methods
         /// <summary>

@@ -20,6 +20,8 @@ namespace EcoClean.TimeManaging.Domain
             }
 
             this.hexMap = hexMap;
+
+            simulationId = Guid.NewGuid().ToString();
         }
         #endregion Constructors
 
@@ -30,6 +32,7 @@ namespace EcoClean.TimeManaging.Domain
         #region Fields
         public readonly List<Tick> ticks = new List<Tick>();
         public readonly HexMap hexMap;
+        public readonly string simulationId;
         #endregion Fields
 
         #region Methods
@@ -39,7 +42,7 @@ namespace EcoClean.TimeManaging.Domain
         /// <returns>The newly instanced tick</returns>
         public Tick GetNextTick()
         {
-            Tick tick = new Tick(nextDay++);
+            Tick tick = new Tick(nextDay++, simulationId);
 
             ticks.Add(tick);
 
