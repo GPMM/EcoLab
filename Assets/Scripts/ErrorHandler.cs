@@ -33,9 +33,13 @@ public static class ErrorHandler
         }
     }
 
-    public static void LogError (string message)
+    public static void LogError(string message)
     {
         LogError(message, null);
+    }
+    public static void LogError(Exception exception)
+    {
+        LogError(null, exception);
     }
 
     // TODO: Finish implementation
@@ -49,11 +53,12 @@ public static class ErrorHandler
         if (!(exception is null))
         {
             Debug.LogError(exception);
+            Debug.Log(exception.Message);
         }
 
-        Application.Quit();
+        //Application.Quit();
 
-        throw new Exception(message);
+        //throw new Exception(message);
     }
     #endregion
 }
