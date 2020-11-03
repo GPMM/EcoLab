@@ -949,7 +949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 560.8569, y: 225.5}
+  m_AnchoredPosition: {x: 560.8569, y: 227.2797}
   m_SizeDelta: {x: 1121.7131, y: 431}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18586040
@@ -964,8 +964,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b66a2a3c575a2841a2afd6edee0d5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeSprite: {fileID: 21300000, guid: 0768551e462e5eb4e97b120dd6f05f58, type: 3}
-  graphHorizontalSeparation: 50
+  nodeContainer: {fileID: 0}
+  verticalLabelContainer: {fileID: 0}
+  horizontalLabelContainer: {fileID: 0}
+  legendContainer: {fileID: 0}
+  scrollbar: {fileID: 0}
+  labelPrefab: {fileID: 0}
+  legendPrefab: {fileID: 0}
+  nodeImage: {fileID: 0}
+  separatorImage: {fileID: 0}
+  separatorColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  horizontalMargin: 0
+  verticalMargin: 0
+  graphHorizontalSpacing: 50
+  verticalSeparatorAmount: 5
 --- !u!222 &18586041
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32838,7 +32850,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a8eac9797190338449e5c2a62aa334f6, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 0
@@ -63274,6 +63286,7 @@ MonoBehaviour:
   ButtonPause: {fileID: 1615032246}
   TimeScale: {fileID: 315219541}
   BaseSecondsPerTick: 5
+  graphUpdateIntervalDays: 1
 --- !u!4 &2019559112
 Transform:
   m_ObjectHideFlags: 0

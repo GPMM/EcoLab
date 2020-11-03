@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using UnityEngine.Networking;
 
 namespace EcoClean
 {
@@ -131,7 +132,7 @@ namespace EcoClean
         {
             if (Input.GetMouseButtonDown(1))
             {
-                PROTOSaveJSON();
+                SaveJSONToServer();
             }
 
             if (!simulationIsStarted && Input.GetMouseButton(0))
@@ -185,24 +186,9 @@ namespace EcoClean
         {
             if (secondsToNextTick <= 0)
             {
-                // Execute the next tick.
-                //try
-                //{
                 FeedingPhase();
-                //}
-                //catch (Exception e)
-                //{
-                //    ErrorHandler.LogError("RUNTIME ERROR DURING THE FEEDING PHASE: " + e.Message);
-                //}
 
-                //try
-                //{
                 BinaryDivisionPhase();
-                //}
-                //catch (Exception e)
-                //{
-                //    ErrorHandler.LogError("RUNTIME ERROR DURING THE BINARY DIVISION PHASE: " + e.Message);
-                //}
 
                 // Reset the tick timer.
                 secondsToNextTick = Config.SECONDS_PER_TICK;
@@ -210,7 +196,7 @@ namespace EcoClean
             else
             {
                 // Progress the timer to the next tick, according to the current game speed.
-                secondsToNextTick -= UnityEngine.Time.deltaTime * Config.TIME_STEP_MULTIPLIERS[currentTimeStepMultiplierIndex];
+                secondsToNextTick -= Time.deltaTime * Config.TIME_STEP_MULTIPLIERS[currentTimeStepMultiplierIndex];
             }
         }
         #endregion Update() methods
@@ -518,15 +504,39 @@ namespace EcoClean
         }
         #endregion UI methods
 
-        private void PROTOSaveJSON()
+        private void SaveJSONToServer()
         {
             Tick tick = TimeManager.CurrentSimulation.ticks.Last();
 
-            Metadata metadata = new Metadata(MetadataManager.Instance.UserId, tick);
+            if (tick is null)
+            {
+                return;
+            }
+
+            string userId = "testUserId";
+
+            if (!(MetadataManager.Instance is null))
+            {
+                userId = MetadataManager.Instance.UserId;
+            }
+
+            Metadata metadata = new Metadata(userId, tick);
 
             string json = JsonConvert.SerializeObject(metadata, Formatting.Indented);
 
             Debug.Log(json);
+
+            var a = UnityWebRequest.Get("https://www.google.com/");
+            a.SendWebRequest();
+
+            while (!a.isDone)
+            {
+
+            }
+
+            var b = a.downloadHandler.data;
+
+            Debug.Log(a.downloadHandler.text);
         }
 
         #endregion Methods

@@ -37,6 +37,7 @@ public static class ErrorHandler
     {
         LogError(message, null);
     }
+
     public static void LogError(Exception exception)
     {
         LogError(null, exception);

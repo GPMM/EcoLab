@@ -217,7 +217,7 @@ namespace EcoClean
             GameObject gameObject = Instantiate(legendPrefab, legendContainer);
 
             Image image = gameObject.GetComponent<Image>();
-            image.color = Color.Lerp(image.color, element.elementColor, 0.8f);
+            image.color = element.elementColor;
 
             Text text = gameObject.GetComponentInChildren<Text>();
             text.text = element.name;

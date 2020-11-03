@@ -32,7 +32,7 @@ namespace EcoClean.TimeManaging
 
             simulationInstances.Add(CurrentSimulation);
         }
-
+        
         public static void CalculateNewTick(Dictionary<Consumption, float> consumptionPerMicroorganism, bool updateGraph)
         {
             List<Hex> hexes = CurrentSimulation.hexMap.AllHexes;
@@ -71,34 +71,43 @@ namespace EcoClean.TimeManaging
             float maxValueMicroorganisms = Config.SLOT_MAX_MICROORGANISMS * GameManager.Instance.hexMap.CachedHexCount;
             float maxValuePollutants = Config.SLOT_MAX_REAGENTS * GameManager.Instance.hexMap.CachedHexCount;
 
-            foreach (Microorganism microorganism in tick.MicroorganismAmount.Keys)
+            if (Config.GRAPH_SHOW_MICROORGANISMS)
             {
-                float amount = tick.MicroorganismAmount[microorganism];
-
-                if (amount > 0)
+                foreach (Microorganism microorganism in tick.MicroorganismAmount.Keys)
                 {
-                    GraphManager.Instance.RenderGraph(microorganism, amount, tick.Day, maxValueMicroorganisms);
+                    float amount = tick.MicroorganismAmount[microorganism];
+
+                    if (amount > 0)
+                    {
+                        GraphManager.Instance.RenderGraph(microorganism, amount, tick.Day, maxValueMicroorganisms);
+                    }
                 }
             }
 
-            foreach (Pollutant pollutant in tick.PollutantAmount.Keys)
+            if (Config.GRAPH_SHOW_POLLUTANTS)
             {
-                float amount = tick.PollutantAmount[pollutant];
-
-                if (amount > 0)
+                foreach (Pollutant pollutant in tick.PollutantAmount.Keys)
                 {
-                    GraphManager.Instance.RenderGraph(pollutant, amount, tick.Day, maxValuePollutants);
+                    float amount = tick.PollutantAmount[pollutant];
+
+                    if (amount > 0)
+                    {
+                        GraphManager.Instance.RenderGraph(pollutant, amount, tick.Day, maxValuePollutants);
+                    }
                 }
             }
 
-            foreach (Consumption consumption in tick.ConsumptionPerMicroorganism.Keys)
+            if (Config.GRAPH_SHOW_CONSUMPTION)
             {
-                float amount = tick.ConsumptionPerMicroorganism[consumption];
-                float maxValueConsumption = Repository.GetReaction(consumption.microorganism, consumption.pollutant) * GameManager.Instance.hexMap.CachedHexCount;
-
-                if (amount > 0)
+                foreach (Consumption consumption in tick.ConsumptionPerMicroorganism.Keys)
                 {
-                    GraphManager.Instance.RenderGraph(consumption, amount, tick.Day, maxValueConsumption);
+                    float amount = tick.ConsumptionPerMicroorganism[consumption];
+                    float maxValueConsumption = Repository.GetReaction(consumption.microorganism, consumption.pollutant) * GameManager.Instance.hexMap.CachedHexCount;
+
+                    if (amount > 0)
+                    {
+                        GraphManager.Instance.RenderGraph(consumption, amount, tick.Day, maxValueConsumption);
+                    }
                 }
             }
         }

@@ -21,6 +21,11 @@
             8f
         };
 
+        // GRAPH
+        public const bool GRAPH_SHOW_MICROORGANISMS = true;
+        public const bool GRAPH_SHOW_POLLUTANTS = true;
+        public const bool GRAPH_SHOW_CONSUMPTION = false;
+
         // UI
         public const float UI_COLOR_BLEND = 0.5f;
         public const float UI_GRAPH_NODE_DIAMETER = 5f;
