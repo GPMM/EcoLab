@@ -338,8 +338,8 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 8703dc4ad89961444a8b6111912da1df, type: 2}
-  - {fileID: 7400000, guid: fe1b44084a0c7574a8d475981fec18a9, type: 2}
+  - {fileID: 7400000, guid: b96d90514b9c9aa45bb350cc86ee8230, type: 2}
+  - {fileID: 7400000, guid: 4b6937e7c87845841b9890cd5521d184, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -408,8 +408,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 953446074}
+  m_Children: []
   m_Father: {fileID: 2118410848}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -483,9 +482,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 750926557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa07378d9ce3554884359c6c0f94d3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e12344c66e92f546b35aa711b8ac748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraphPanel: {fileID: 1367335913}
+  ButtonPrefab: {fileID: 727860571553608360, guid: ee10a6178c793ea458c259934693aab8,
+    type: 3}
+  ButtonPanel: {fileID: 248844575}
+  ButtonPlay: {fileID: 1096841805}
+  ButtonPause: {fileID: 1381800760}
+  TimeScale: {fileID: 800315087}
+  BaseSecondsPerTick: 1.5
+  graphUpdateIntervalDays: 10
 --- !u!4 &750926559
 Transform:
   m_ObjectHideFlags: 0
@@ -509,9 +517,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 750926557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b66a2a3c575a2841a2afd6edee0d5cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 2282283a96336784eb8804d72b0561d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeContainer: {fileID: 721685039}
+  verticalLabelContainer: {fileID: 721685039}
+  horizontalLabelContainer: {fileID: 1090145799}
+  legendContainer: {fileID: 173373595}
+  scrollbar: {fileID: 1748880257}
+  labelPrefab: {fileID: 4225327798817422151, guid: 8452a4393c624a9408e8b088e4916c0e,
+    type: 3}
+  legendPrefab: {fileID: 8773758642793697258, guid: c2df5e2b43771084d8608d091d29fd9d,
+    type: 3}
+  nodeImage: {fileID: 21300000, guid: 2ec30a690f16c74489f5197af470cba3, type: 3}
+  separatorImage: {fileID: 21300000, guid: c7c44e1d1ffd8974aa353c8daa62f8a7, type: 3}
+  separatorColor: {r: 0.39, g: 0.39, b: 0.39, a: 1}
+  horizontalMargin: 10
+  verticalMargin: 10
+  graphHorizontalSpacing: 35
+  verticalSeparatorAmount: 5
 --- !u!1 &800315087
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,8 +596,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 56ffb502b53d956449375b6f32e6e27f, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 56ffb502b53d956449375b6f32e6e27f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -669,80 +693,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800315087}
-  m_CullTransparentMesh: 0
---- !u!1 &953446073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953446074}
-  - component: {fileID: 953446076}
-  - component: {fileID: 953446075}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &953446074
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953446073}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 721685039}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 79.87}
-  m_SizeDelta: {x: 0, y: 2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &953446075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953446073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e88251859ee0000449b833063c2c02d1, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &953446076
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953446073}
   m_CullTransparentMesh: 0
 --- !u!1 &1090145798
 GameObject:
@@ -1015,8 +965,8 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 42cdaf2d238f8b94588e59f818a7796b, type: 2}
-  - {fileID: 7400000, guid: 1db21e8e9e1b1b1479c9b5d628002472, type: 2}
+  - {fileID: 7400000, guid: 5e6cadc201bfcdc429f2aee8fed4befb, type: 2}
+  - {fileID: 7400000, guid: b1be4da4c938a064eaf3c35b88f3165d, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1108,7 +1058,6 @@ GameObject:
   - component: {fileID: 1367335914}
   - component: {fileID: 1367335918}
   - component: {fileID: 1367335917}
-  - component: {fileID: 1367335916}
   - component: {fileID: 1367335915}
   m_Layer: 5
   m_Name: GraphPanel
@@ -1149,31 +1098,12 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 3c5517ab87b65604bb64f19dfd4a3da8, type: 2}
-  - {fileID: 7400000, guid: 2e64ea74d5f58314bbcf86b2628b4286, type: 2}
+  - {fileID: 7400000, guid: d58dc910d12e3274893490a62f3bb6e4, type: 2}
+  - {fileID: 7400000, guid: ba45254ac40f03141a80b1b7c607f069, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!95 &1367335916
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367335913}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01ed09ae94827b94980e4e0bdd8a9398, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1367335917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4e2c2eb4ccae46744a7fe17347b22382, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e23d09437ce78074684d05386f14df63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1581,7 +1511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ecc81861b5031234ab3d0509deac8d1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 404e18eba2e7b5144842af900ea38ca6, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1975,8 +1905,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ecc81861b5031234ab3d0509deac8d1e, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 404e18eba2e7b5144842af900ea38ca6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

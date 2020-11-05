@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 398156958}
   - component: {fileID: 398156957}
   m_Layer: 5
-  m_Name: "T\xEEtle"
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 878205878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b774b949ba2ae34f97ef596e7b43eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 12b5b813b416d1c40a6d858cdd3ca53d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &942382657
@@ -1548,10 +1548,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1123427248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a4d0eab4b79cc4b81933fda5b37301, type: 3}
+  m_Script: {fileID: 11500000, guid: e621e76be81b72a408281182e1faadc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMenu: {fileID: 0}
+  startingMenu: {fileID: 1606900146}
 --- !u!4 &1123427250
 Transform:
   m_ObjectHideFlags: 0

@@ -346,6 +346,8 @@ namespace EcoClean
         #region UI methods
         private void BuildButtons()
         {
+            // TODO: Eliminate duplicated code. Use the superclass Element to interpret both
+            // microorganisms and pollutants as the same, or do the accordion thing in the UI.
             List<Microorganism> microorganisms = Repository.GetMicroorganisms().ToList();
             List<Pollutant> pollutants = Repository.GetPollutants().ToList();
 
@@ -355,10 +357,10 @@ namespace EcoClean
                     ButtonPrefab,
                     ButtonPanel.transform);
 
-                button.GetComponentInChildren<Text>().text = microorganism.name;
+                button.GetComponentInChildren<TextMeshProUGUI>().text = microorganism.name;
 
                 Image image = button.GetComponent<Image>();
-                image.color = Color.Lerp(image.color, microorganism.elementColor, Config.UI_COLOR_BLEND);
+                image.color = microorganism.elementColor;
 
                 button.GetComponent<Button>().onClick.AddListener(() => UISelectMicroorganism(microorganism.name));
             }
@@ -369,10 +371,10 @@ namespace EcoClean
                     ButtonPrefab,
                     ButtonPanel.transform);
 
-                button.GetComponentInChildren<Text>().text = pollutant.name;
+                button.GetComponentInChildren<TextMeshProUGUI>().text = pollutant.name;
 
                 Image image = button.GetComponent<Image>();
-                image.color = Color.Lerp(image.color, pollutant.elementColor, 0.5f);
+                image.color = pollutant.elementColor;
 
                 button.GetComponent<Button>().onClick.AddListener(() => UISelectPollutant(pollutant.name));
             }

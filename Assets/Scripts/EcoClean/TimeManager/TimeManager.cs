@@ -79,7 +79,7 @@ namespace EcoClean.TimeManaging
 
                     if (amount > 0)
                     {
-                        GraphManager.Instance.RenderGraph(microorganism, amount, tick.Day, maxValueMicroorganisms);
+                        GraphManager.Instance.RenderToGraph(microorganism, amount, tick.Day, maxValueMicroorganisms);
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace EcoClean.TimeManaging
 
                     if (amount > 0)
                     {
-                        GraphManager.Instance.RenderGraph(pollutant, amount, tick.Day, maxValuePollutants);
+                        GraphManager.Instance.RenderToGraph(pollutant, amount, tick.Day, maxValuePollutants);
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace EcoClean.TimeManaging
 
                     if (amount > 0)
                     {
-                        GraphManager.Instance.RenderGraph(consumption, amount, tick.Day, maxValueConsumption);
+                        GraphManager.Instance.RenderToGraph(consumption, amount, tick.Day, maxValueConsumption);
                     }
                 }
             }
