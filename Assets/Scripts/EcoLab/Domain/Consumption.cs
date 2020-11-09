@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EcoClean.Domain
+namespace EcoLab.Domain
 {
     public class Consumption : Element
     {

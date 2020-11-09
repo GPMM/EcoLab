@@ -1,4 +1,4 @@
-﻿namespace EcoClean.Domain
+﻿namespace EcoLab.Domain
 {
     public enum ElementType
     {

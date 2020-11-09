@@ -1,7 +1,7 @@
 ﻿using CubicHex;
-using EcoClean.Domain;
-using EcoClean.TimeManaging;
-using EcoClean.TimeManaging.Domain;
+using EcoLab.Domain;
+using EcoLab.TimeManaging;
+using EcoLab.TimeManaging.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 
-namespace EcoClean
+namespace EcoLab
 {
     public class GameManager : MonoBehaviour
     {

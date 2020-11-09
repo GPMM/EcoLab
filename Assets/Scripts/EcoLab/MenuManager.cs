@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace EcoClean
+namespace EcoLab
 {
     public class MenuManager : MonoBehaviour
     {

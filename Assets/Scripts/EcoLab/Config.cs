@@ -1,4 +1,4 @@
-﻿namespace EcoClean
+﻿namespace EcoLab
 {
     public static class Config
     {

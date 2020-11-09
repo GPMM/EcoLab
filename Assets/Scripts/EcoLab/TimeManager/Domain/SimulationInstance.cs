@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EcoClean.TimeManaging.Domain
+namespace EcoLab.TimeManaging.Domain
 {
     [Serializable]
     public class SimulationInstance

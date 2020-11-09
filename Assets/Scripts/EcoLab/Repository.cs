@@ -1,9 +1,9 @@
-﻿using EcoClean.Domain;
+﻿using EcoLab.Domain;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EcoClean
+namespace EcoLab
 {
     public static class Repository
     {

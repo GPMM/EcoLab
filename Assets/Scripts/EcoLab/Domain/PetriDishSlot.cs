@@ -1,8 +1,8 @@
 ﻿using CubicHex;
-using EcoClean.Domain;
+using EcoLab.Domain;
 using UnityEngine;
 
-namespace EcoClean.Domain
+namespace EcoLab.Domain
 {
     public class PetriDishSlot : Hex
     {

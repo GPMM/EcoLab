@@ -1,6 +1,6 @@
-﻿using EcoClean.TimeManaging.Domain;
+﻿using EcoLab.TimeManaging.Domain;
 
-namespace EcoClean.Domain
+namespace EcoLab.Domain
 {
     public class Metadata
     {

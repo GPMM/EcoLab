@@ -1,9 +1,9 @@
 ﻿using CubicHex;
-using EcoClean.Domain;
-using EcoClean.TimeManaging.Domain;
+using EcoLab.Domain;
+using EcoLab.TimeManaging.Domain;
 using System.Collections.Generic;
 
-namespace EcoClean.TimeManaging
+namespace EcoLab.TimeManaging
 {
     public static class TimeManager
     {

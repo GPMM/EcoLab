@@ -1,10 +1,10 @@
-﻿using EcoClean;
-using EcoClean.Domain;
+﻿using EcoLab;
+using EcoLab.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EcoClean.TimeManaging.Domain
+namespace EcoLab.TimeManaging.Domain
 {
     [Serializable]
     public class Tick

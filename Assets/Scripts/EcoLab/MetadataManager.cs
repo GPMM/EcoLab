@@ -1,7 +1,7 @@
-﻿using EcoClean.TimeManaging.Domain;
+﻿using EcoLab.TimeManaging.Domain;
 using UnityEngine;
 
-namespace EcoClean
+namespace EcoLab
 {
     public class MetadataManager : MonoBehaviour
     {

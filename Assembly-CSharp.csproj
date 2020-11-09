@@ -66,23 +66,23 @@
     <Compile Include="Assets\Scripts\CubicHex\Hex.cs" />
     <Compile Include="Assets\Scripts\CubicHex\HexMap.cs" />
     <Compile Include="Assets\Scripts\CubicHex\Pathfinder.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Config.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\Consumption.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\Element.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\ElementType.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\Metadata.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\Microorganism.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\PetriDishSlot.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Domain\Pollutant.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\FormManager.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\GameManager.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\GraphManager.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\MetadataManager.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\Repository.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\TimeManager\Domain\SimulationInstance.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\TimeManager\Domain\Tick.cs" />
-    <Compile Include="Assets\Scripts\EcoClean\TimeManager\TimeManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Config.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\Consumption.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\Element.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\ElementType.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\Metadata.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\Microorganism.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\PetriDishSlot.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Domain\Pollutant.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\FormManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\GameManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\GraphManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\MetadataManager.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\Repository.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\TimeManager\Domain\SimulationInstance.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\TimeManager\Domain\Tick.cs" />
+    <Compile Include="Assets\Scripts\EcoLab\TimeManager\TimeManager.cs" />
     <Compile Include="Assets\Scripts\ErrorHandler.cs" />
     <Compile Include="Assets\Scripts\Logger.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
@@ -667,14 +667,14 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/Master/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/Master/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/Master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/Master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Lewiks/TCC2 - Project Eco-clean/Master/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

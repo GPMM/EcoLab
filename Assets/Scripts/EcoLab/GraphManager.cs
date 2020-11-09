@@ -1,10 +1,10 @@
-﻿using EcoClean.Domain;
+﻿using EcoLab.Domain;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EcoClean
+namespace EcoLab
 {
     public class GraphManager : MonoBehaviour
     {

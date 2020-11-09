@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace EcoClean
+namespace EcoLab
 {
     public class FormManager : MonoBehaviour
     {
