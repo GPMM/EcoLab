@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
+using System.Web;
 
 namespace EcoLab
 {
@@ -106,14 +107,7 @@ namespace EcoLab
 
         private void Update()
         {
-            try
-            {
-                HandleControls();
-            }
-            catch (Exception e)
-            {
-                ErrorHandler.LogError("Runtime error during the control handling step: " + e.StackTrace, e);
-            }
+            HandleControls();
 
             if (!paused)
             {
@@ -130,11 +124,6 @@ namespace EcoLab
         /// </summary>
         private void HandleControls()
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                SaveJSONToServer();
-            }
-
             if (!simulationIsStarted && Input.GetMouseButton(0))
             {
                 Hex mouseHex = Hex.FindHexAtMousePosition();
@@ -146,7 +135,7 @@ namespace EcoLab
                     switch (selectedElementType)
                     {
                         case ElementType.MICROORGANISM:
-                            petriDishSlots = hexMap.GetHexesWithin(new Hex(mouseHex.Q, mouseHex.R), 1).ToList();
+                            petriDishSlots = hexMap.GetHexesWithin(new Hex(mouseHex.Q, mouseHex.R), Config.INSERTION_RADIUS_MICROORGANISM).ToList();
 
                             Dictionary<string, Microorganism> microorganisms = Repository.GetMicroorganismsDictionary();
 
@@ -159,8 +148,7 @@ namespace EcoLab
 
                             break;
                         case ElementType.POLLUTANT:
-
-                            petriDishSlots = hexMap.GetHexesWithin(new Hex(mouseHex.Q, mouseHex.R), 3).ToList();
+                            petriDishSlots = hexMap.GetHexesWithin(new Hex(mouseHex.Q, mouseHex.R), Config.INSERTION_RADIUS_POLLUTANT).ToList();
 
                             Dictionary<string, Pollutant> pollutants = Repository.GetPollutantsDictionary();
 
@@ -189,6 +177,8 @@ namespace EcoLab
                 FeedingPhase();
 
                 BinaryDivisionPhase();
+
+                Repository.UploadSimulationInstant();
 
                 // Reset the tick timer.
                 secondsToNextTick = Config.SECONDS_PER_TICK;
@@ -505,41 +495,6 @@ namespace EcoLab
             return true;
         }
         #endregion UI methods
-
-        private void SaveJSONToServer()
-        {
-            Tick tick = TimeManager.CurrentSimulation.ticks.Last();
-
-            if (tick is null)
-            {
-                return;
-            }
-
-            string userId = "testUserId";
-
-            if (!(MetadataManager.Instance is null))
-            {
-                userId = MetadataManager.Instance.UserId;
-            }
-
-            Metadata metadata = new Metadata(userId, tick);
-
-            string json = JsonConvert.SerializeObject(metadata, Formatting.Indented);
-
-            Debug.Log(json);
-
-            var a = UnityWebRequest.Get("https://www.google.com/");
-            a.SendWebRequest();
-
-            while (!a.isDone)
-            {
-
-            }
-
-            var b = a.downloadHandler.data;
-
-            Debug.Log(a.downloadHandler.text);
-        }
 
         #endregion Methods
     }
