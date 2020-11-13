@@ -8,7 +8,7 @@ namespace EcoLab.ViewModel
         #region Constructors
         public SimulationDetailViewModel(int simulationDetailId, int type, string name, float value)
         {
-            SimulationDetailId = simulationDetailId;
+            SimulationInstanceId = simulationDetailId;
             Type = type;
             Name = name;
             Value = value;
@@ -16,7 +16,7 @@ namespace EcoLab.ViewModel
         #endregion Constructors
 
         #region Properties
-        public int SimulationDetailId { get; }
+        public int SimulationInstanceId { get; }
 
         /// <summary>
         /// 0: NULL

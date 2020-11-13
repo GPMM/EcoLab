@@ -38,8 +38,8 @@
         public const float UI_GRAPH_SEPARATOR_THICKNESS = 2f;
 
         // Server
-        public const string URL_SAVE_SIMINSTANCE = "https://albali.eic.cefet-rj.br/gpmm/ecoclean/save_siminstance.php?json=";
-        public const string URL_SAVE_SIMDETAIL = "https://albali.eic.cefet-rj.br/gpmm/ecoclean/save_simdetail.php?json=";
+        public const string URL_SAVE_SIMINSTANCE = "https://albali.eic.cefet-rj.br/gpmm/ecolab/save_siminstance.php?json=";
+        public const string URL_SAVE_SIMDETAIL = "https://albali.eic.cefet-rj.br/gpmm/ecolab/save_simdetail.php?json=";
         #endregion
     }
 }

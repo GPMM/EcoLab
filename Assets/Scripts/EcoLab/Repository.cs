@@ -3,14 +3,12 @@ using EcoLab.TimeManaging;
 using EcoLab.TimeManaging.Domain;
 using EcoLab.ViewModel;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace EcoLab
 {
@@ -113,9 +111,9 @@ namespace EcoLab
                 return;
             }
 
+            // Finding the metadata to save
             string userId = "defaultUserId";
 
-            // Finding the metadata to save
             if (!(MetadataManager.Instance is null))
             {
                 userId = MetadataManager.Instance.UserId;
@@ -155,9 +153,7 @@ namespace EcoLab
                 string json = JsonConvert.SerializeObject(item, Formatting.None);
                 json = HttpUtility.UrlEncode(json);
 
-                string result = await client.GetStringAsync(Config.URL_SAVE_SIMDETAIL + json);
-
-                result = "a";
+                await client.GetStringAsync(Config.URL_SAVE_SIMDETAIL + json);
             }
         }
         #endregion
