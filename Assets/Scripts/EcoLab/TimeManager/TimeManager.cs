@@ -69,7 +69,7 @@ namespace EcoLab.TimeManaging
         private static void UpdateGraph(Tick tick)
         {
             float maxValueMicroorganisms = Config.SLOT_MAX_MICROORGANISMS * GameManager.Instance.hexMap.CachedHexCount;
-            float maxValuePollutants = Config.SLOT_MAX_REAGENTS * GameManager.Instance.hexMap.CachedHexCount;
+            float maxValuePollutants = Config.SLOT_MAX_POLLUTANTS * GameManager.Instance.hexMap.CachedHexCount;
 
             if (Config.GRAPH_SHOW_MICROORGANISMS)
             {

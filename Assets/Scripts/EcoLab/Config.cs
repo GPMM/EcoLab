@@ -7,7 +7,7 @@
         public const float MICROORGANISM_CONSUMPTION_RANDOM_VARIATION = 0.20f;
 
         public const float SLOT_MAX_MICROORGANISMS = 1.0f;
-        public const float SLOT_MAX_REAGENTS = 5.0f;
+        public const float SLOT_MAX_POLLUTANTS = 5.0f;
 
         public const float SECONDS_PER_TICK = 1f;
 

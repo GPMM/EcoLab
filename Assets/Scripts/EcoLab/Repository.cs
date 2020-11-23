@@ -20,12 +20,19 @@ namespace EcoLab
 
         #region Local variables
         // TODO: These are hard-coded for the purpose of development
-        private static Microorganism PROTOBacteriaA = new Microorganism("Bacteria A", Color.blue, 0.05f);
-        private static Microorganism PROTOBacteriaB = new Microorganism("Bacteria B", Color.red, 0.03f);
-        private static Microorganism PROTOBacteriaC = new Microorganism("Bacteria C", Color.yellow, 0.02f);
+        private static Microorganism PROTOBacteriaA = new Microorganism(
+            "Micrococcus", new Color(219/255f, 77/255f, 77/255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaB = new Microorganism(
+            "Arthrobacter", new Color(57/255f, 163/255f, 64/255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaC = new Microorganism(
+            "Bacillus", new Color(222/255f, 180/255f, 67/255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaD = new Microorganism(
+            "Burkholderia", new Color(106/255f, 73/255f, 214/255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaE = new Microorganism(
+            "Staphylococcus", new Color(56/255f, 145/255f, 209/255f, 1f), 0.03f);
 
-        private static Pollutant PROTOPollutantA = new Pollutant("Pollutant A", Color.cyan);
-        private static Pollutant PROTOPollutantB = new Pollutant("Pollutant B", Color.magenta);
+        private static Pollutant PROTOPollutantA = new Pollutant("Diesel", Color.cyan);
+        private static Pollutant PROTOPollutantB = new Pollutant("Biodiesel", Color.magenta);
         #endregion Local variables
 
         #region Methods
@@ -35,7 +42,9 @@ namespace EcoLab
             {
                 PROTOBacteriaA,
                 PROTOBacteriaB,
-                PROTOBacteriaC
+                PROTOBacteriaC,
+                PROTOBacteriaD,
+                PROTOBacteriaE
             };
 
             microorganisms.Sort((x, y) => x.name.CompareTo(y.name));
@@ -87,7 +96,11 @@ namespace EcoLab
             { new Consumption(PROTOBacteriaB, PROTOPollutantA), 0.12f },
             { new Consumption(PROTOBacteriaB, PROTOPollutantB), 0.15f },
             { new Consumption(PROTOBacteriaC, PROTOPollutantA), -0.09f },
-            { new Consumption(PROTOBacteriaC, PROTOPollutantB), 0.11f }
+            { new Consumption(PROTOBacteriaC, PROTOPollutantB), 0.11f },
+            { new Consumption(PROTOBacteriaD, PROTOPollutantA), 0.12f },
+            { new Consumption(PROTOBacteriaD, PROTOPollutantB), 0.15f },
+            { new Consumption(PROTOBacteriaE, PROTOPollutantA), 0.12f },
+            { new Consumption(PROTOBacteriaE, PROTOPollutantB), 0.15f }
         };
 
         /// <summary>

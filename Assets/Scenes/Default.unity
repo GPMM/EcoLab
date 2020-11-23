@@ -535,7 +535,7 @@ MonoBehaviour:
   horizontalMargin: 10
   verticalMargin: 10
   graphHorizontalSpacing: 35
-  verticalSeparatorAmount: 5
+  verticalSeparatorAmount: 6
 --- !u!1 &800315087
 GameObject:
   m_ObjectHideFlags: 0

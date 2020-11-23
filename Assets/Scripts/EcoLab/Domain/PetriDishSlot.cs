@@ -49,7 +49,7 @@ namespace EcoLab.Domain
             }
             private set
             {
-                pollutantAmount = Mathf.Clamp(value, 0, Config.SLOT_MAX_REAGENTS);
+                pollutantAmount = Mathf.Clamp(value, 0, Config.SLOT_MAX_POLLUTANTS);
             }
         }
         #endregion
@@ -131,7 +131,7 @@ namespace EcoLab.Domain
 
             if (microorganism != null)
             {
-                float transparency = MicroorganismAmount / Config.SLOT_MAX_MICROORGANISMS;
+                float transparency = Mathf.Sqrt(MicroorganismAmount / Config.SLOT_MAX_MICROORGANISMS);
 
                 color = new Color(
                     microorganism.elementColor.r,
@@ -149,7 +149,7 @@ namespace EcoLab.Domain
 
             if (pollutant != null)
             {
-                float transparency = PollutantAmount / Config.SLOT_MAX_REAGENTS;
+                float transparency = Mathf.Sqrt(PollutantAmount / Config.SLOT_MAX_POLLUTANTS);
 
                 color = new Color(
                     pollutant.elementColor.r,

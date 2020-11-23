@@ -107,7 +107,10 @@ namespace EcoLab
 
         private void Update()
         {
-            HandleControls();
+            if (!simulationIsStarted)
+            {
+                HandleControls();
+            }
 
             if (!paused)
             {
@@ -124,7 +127,7 @@ namespace EcoLab
         /// </summary>
         private void HandleControls()
         {
-            if (!simulationIsStarted && Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
             {
                 Hex mouseHex = Hex.FindHexAtMousePosition();
 
@@ -143,7 +146,7 @@ namespace EcoLab
                             {
                                 PetriDishSlot petriDishSlot = (PetriDishSlot)hex;
 
-                                petriDishSlot.AddMicroorganism(microorganisms[selectedElement], 0.1f);
+                                petriDishSlot.SetMicroorganism(microorganisms[selectedElement], Config.SLOT_MAX_MICROORGANISMS * 0.5f);
                             }
 
                             break;
@@ -156,7 +159,7 @@ namespace EcoLab
                             {
                                 PetriDishSlot petriDishSlot = (PetriDishSlot)hex;
 
-                                petriDishSlot.AddPollutant(pollutants[selectedElement], 1.5f);
+                                petriDishSlot.SetPollutant(pollutants[selectedElement], Config.SLOT_MAX_POLLUTANTS);
                             }
 
                             break;
