@@ -21,18 +21,28 @@ namespace EcoLab
         #region Local variables
         // TODO: These are hard-coded for the purpose of development
         private static Microorganism PROTOBacteriaA = new Microorganism(
-            "Micrococcus", new Color(219/255f, 77/255f, 77/255f, 1f), 0.03f);
+            "Agromyces", new Color(255 / 255f, 0 / 255f, 0 / 255f, 1f), 0.03f);
         private static Microorganism PROTOBacteriaB = new Microorganism(
-            "Arthrobacter", new Color(57/255f, 163/255f, 64/255f, 1f), 0.03f);
+            "Arthrobacter", new Color(255 / 255f, 170 / 255f, 0 / 255f, 1f), 0.03f);
         private static Microorganism PROTOBacteriaC = new Microorganism(
-            "Bacillus", new Color(222/255f, 180/255f, 67/255f, 1f), 0.03f);
+            "Bacillus", new Color(170 / 255f, 255 / 255f, 0 / 255f, 1f), 0.03f);
         private static Microorganism PROTOBacteriaD = new Microorganism(
-            "Burkholderia", new Color(106/255f, 73/255f, 214/255f, 1f), 0.03f);
+            "Burkholderia", new Color(0 / 255f, 255 / 255f, 0 / 255f, 1f), 0.03f);
         private static Microorganism PROTOBacteriaE = new Microorganism(
-            "Staphylococcus", new Color(56/255f, 145/255f, 209/255f, 1f), 0.03f);
+            "Cupriavidus", new Color(0 / 255f, 255 / 255f, 170 / 255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaF = new Microorganism(
+            "Lysobacter", new Color(0 / 255f, 170 / 255f, 255 / 255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaG = new Microorganism(
+            "Micrococcus", new Color(0 / 255f, 0 / 255f, 255 / 255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaH = new Microorganism(
+            "Sinomonas", new Color(170 / 255f, 0 / 255f, 255 / 255f, 1f), 0.03f);
+        private static Microorganism PROTOBacteriaI = new Microorganism(
+            "Staphylococcus", new Color(255 / 255f, 0 / 255f, 170 / 255f, 1f), 0.03f);
 
-        private static Pollutant PROTOPollutantA = new Pollutant("Diesel", Color.cyan);
-        private static Pollutant PROTOPollutantB = new Pollutant("Biodiesel", Color.magenta);
+        private static Pollutant PROTOPollutantA = new Pollutant(
+            "Diesel", new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f));
+        private static Pollutant PROTOPollutantB = new Pollutant(
+            "Biodiesel", new Color(25 / 255f, 25 / 255f, 25 / 255f, 1f));
         #endregion Local variables
 
         #region Methods
@@ -44,7 +54,11 @@ namespace EcoLab
                 PROTOBacteriaB,
                 PROTOBacteriaC,
                 PROTOBacteriaD,
-                PROTOBacteriaE
+                PROTOBacteriaE,
+                PROTOBacteriaF,
+                PROTOBacteriaG,
+                PROTOBacteriaH,
+                PROTOBacteriaI
             };
 
             microorganisms.Sort((x, y) => x.name.CompareTo(y.name));
@@ -91,16 +105,14 @@ namespace EcoLab
 
         private static Dictionary<Consumption, float> reactionTable = new Dictionary<Consumption, float>()
         {
-            { new Consumption(PROTOBacteriaA, PROTOPollutantA), 0.21f },
-            { new Consumption(PROTOBacteriaA, PROTOPollutantB), -0.08f },
-            { new Consumption(PROTOBacteriaB, PROTOPollutantA), 0.12f },
-            { new Consumption(PROTOBacteriaB, PROTOPollutantB), 0.15f },
-            { new Consumption(PROTOBacteriaC, PROTOPollutantA), -0.09f },
-            { new Consumption(PROTOBacteriaC, PROTOPollutantB), 0.11f },
-            { new Consumption(PROTOBacteriaD, PROTOPollutantA), 0.12f },
-            { new Consumption(PROTOBacteriaD, PROTOPollutantB), 0.15f },
-            { new Consumption(PROTOBacteriaE, PROTOPollutantA), 0.12f },
-            { new Consumption(PROTOBacteriaE, PROTOPollutantB), 0.15f }
+            { new Consumption(PROTOBacteriaA, PROTOPollutantA), 0.10f },
+            { new Consumption(PROTOBacteriaB, PROTOPollutantA), 0.20f },
+            { new Consumption(PROTOBacteriaC, PROTOPollutantB), 0.24f },
+            { new Consumption(PROTOBacteriaD, PROTOPollutantB), 0.24f },
+            { new Consumption(PROTOBacteriaE, PROTOPollutantA), 0.10f },
+            { new Consumption(PROTOBacteriaF, PROTOPollutantA), 0.10f },
+            { new Consumption(PROTOBacteriaH, PROTOPollutantA), 0.10f },
+            { new Consumption(PROTOBacteriaI, PROTOPollutantB), 0.24f }
         };
 
         /// <summary>
@@ -109,9 +121,18 @@ namespace EcoLab
         /// <param name="microorganism">The Microorganism name</param>
         /// <param name="pollutant">The Pollutant name</param>
         /// <returns>The amount of change in the microorganism's energy per tick</returns>
-        public static float GetReaction (Microorganism microorganism, Pollutant pollutant)
+        public static float GetReaction(Microorganism microorganism, Pollutant pollutant)
         {
-            return reactionTable[new Consumption(microorganism, pollutant)];
+            Consumption consumption = new Consumption(microorganism, pollutant);
+
+            if (reactionTable.Keys.Any(x => x == consumption))
+            {
+                return reactionTable[new Consumption(microorganism, pollutant)];
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public static async void UploadSimulationInstant()
